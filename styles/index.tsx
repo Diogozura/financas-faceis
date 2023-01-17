@@ -9,9 +9,7 @@ export default createGlobalStyle`
     font-family: 'Iceberg', cursive;
   }
   body{
-    background-image: url("/estrela.svg");
     /* background-color: #000000; */
-    color:#000000;
   }
   /* body, input, button {
     font: 14px Roboto, sans-serif;

@@ -24,10 +24,15 @@
     "next": "13.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-number-format": "^4.9.3",
     "styled-components": "^5.3.6",
     "typescript": "4.9.4"
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Diogozura/financas-faceis.git",
+  "author": "Diogo Zura <diogozura@gmail.com>",
+  "license": "MIT"
 }
