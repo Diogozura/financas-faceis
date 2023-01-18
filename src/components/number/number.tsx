@@ -30,7 +30,7 @@ export const NumberFormatCustom = React.forwardRef<
       isNumericString
       thousandSeparator={'.'}
       decimalSeparator={','}
-      prefix="R$"
+      prefix="R$ "
 
     />
   );
