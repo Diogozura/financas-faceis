@@ -11,7 +11,10 @@ import ConversionForm from '../../components/mesAno'
 import YearToMonthForm from '../../components/mesAno'
 import Porcentagens from '../../components/Porcentagem'
 import CustomizedTables from './TableSac'
-import MyList from './table-1'
+import MyComponent from './table-1'
+import { Amortizacao } from './Amortizacao'
+import CustomizedTable from './table-1'
+
 
 const Title = styled.h1`
   color:${theme.colors.AzulEscuro};
@@ -31,6 +34,7 @@ type Item = {
 
 
 export default function Home() {
+    const [Meses, setMeses] = React.useState('');
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar 
         valorInicial: 0,
@@ -48,13 +52,13 @@ export default function Home() {
         // amortização 
         amortizacao: 0,
     })
-    const [Meses, setMeses] = React.useState('');
+   
     console.log('qual mês?', Meses)
     const valores = [{
         simble: 'R$',
         name: 'valorInicial',
         value: values.valorInicial,
-        label: 'valor Inicial',
+        label: 'Valor Financiado',
     },
     {
         simble: 'R$',
@@ -85,17 +89,34 @@ export default function Home() {
         })
 
     }
-
+    const valorInicial =values.valorInicial
+    const valorEntrada = values.entrada
+    const parcelaMes = Meses
+    const [count, setCount] = React.useState(30);
     function submit(e: { preventDefault: () => void }) {
         e.preventDefault()
-        
+      
+        Amortizacao({ valorInicial, valorEntrada, parcelaMes })
        
-   
+        addPessoa( 'nome', 3 , 'sexo' )
+        
     }
 
     // console.log("valor inicial", values.valorInicial)
 
-
+    interface Pessoa {
+        nome: string;
+        idade: number;
+        sexo: string;
+      }
+      
+      const [state, setState] = React.useState<{ pessoas: Pessoa[] }>({ pessoas: [] });
+    console.log(state.pessoas)
+      function addPessoa(nome: string, idade: number, sexo: string) {
+        setState((prevState) => {
+          return {...prevState, pessoas: [...prevState.pessoas, { nome, idade, sexo }]};
+        });
+      }
     return (
         <>
            
@@ -108,7 +129,7 @@ export default function Home() {
             <Title>
                 oii
             </Title>
-
+            {/* <MyComponent/> */}
             <Box
                 sx={{
                     width: 700,
@@ -157,8 +178,8 @@ export default function Home() {
                 </form>
                
             </Box>
-            {/* <MyList/> */}
-            <CustomizedTables />
+            {/* <CustomizedTable/> */}
+            <CustomizedTables valorInicial={valorInicial} valorEntrada={valorEntrada} parcelaMes={ parcelaMes }/> 
             
         </>
     )
