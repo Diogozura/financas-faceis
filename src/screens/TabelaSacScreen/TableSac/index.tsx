@@ -64,7 +64,14 @@ export default function SimpleTable({ valorInicial, valorEntrada, parcelaMes, ta
         i += 1;
 
         if (i == 1) {
-          const obj = {};
+          const obj = {
+          N: 0,
+          juros : 0,
+          
+          parcelas : 0,
+          amortizacao : 0,
+          saldoDevedor : 0
+          };
           obj.N = i
           obj.juros = 0;
           obj.parcelas = 0;
@@ -73,7 +80,13 @@ export default function SimpleTable({ valorInicial, valorEntrada, parcelaMes, ta
           array.push(obj)
         } else {
           var devedorAnterior = array[i - 2].saldoDevedor
-          const temp = {}
+          const temp = {
+            N: 0,
+            juros : 0,
+            parcelas : 0,
+            amortizacao : 0,
+            saldoDevedor : 0
+          }
           temp.N = i;
           temp.juros =Math.round( CalculoJuros(devedorAnterior, taxaMesal));
           temp.amortizacao = Amotização;
