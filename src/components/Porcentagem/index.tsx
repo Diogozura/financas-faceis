@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 
-export default function Porcentagen({})  {
-  const [yearPercentage, setYearPercentage] = useState('');
+export default function Porcentagen({setTaxaMesal})  {
+  const [yearPercentage, setYearPercentage] = useState<any>('');
   const [monthPercentage, setMonthPercentage] = useState('');
 
   const handleYearPercentageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +15,8 @@ export default function Porcentagen({})  {
     setYearPercentage((Number(event.target.value) * 12).toFixed(2));
   }
 
+  const taxaMesal = ( 1 + yearPercentage/100 ) ** ( 1/12 ) -1
+  setTaxaMesal(taxaMesal)
   return (
     <>
       <TextField

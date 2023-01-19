@@ -14,6 +14,7 @@ import CustomizedTables from './TableSac'
 import MyComponent from './table-1'
 import { Amortizacao } from './Amortizacao'
 import CustomizedTable from './table-1'
+import SimpleTable from './TableSac'
 
 
 const Title = styled.h1`
@@ -35,6 +36,8 @@ type Item = {
 
 export default function Home() {
     const [Meses, setMeses] = React.useState('');
+    const [taxaMesal, setTaxaMesal] = React.useState('')
+    console.log('taxaMesal',taxaMesal)
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar 
         valorInicial: 0,
@@ -58,12 +61,14 @@ export default function Home() {
         simble: 'R$',
         name: 'valorInicial',
         value: values.valorInicial,
+        
         label: 'Valor Financiado',
     },
     {
         simble: 'R$',
         name: 'entrada',
         value: values.entrada,
+        
         label: 'Valor de Entrada'
         },
         {
@@ -97,7 +102,7 @@ export default function Home() {
         e.preventDefault()
       
         Amortizacao({ valorInicial, valorEntrada, parcelaMes })
-       
+        // SimpleTable(valorInicial, valorEntrada, parcelaMes, taxaMesal)
         addPessoa( 'nome', 3 , 'sexo' )
         
     }
@@ -112,7 +117,8 @@ export default function Home() {
       
       const [state, setState] = React.useState<{ pessoas: Pessoa[] }>({ pessoas: [] });
     console.log(state.pessoas)
-      function addPessoa(nome: string, idade: number, sexo: string) {
+    function addPessoa(nome: string, idade: number, sexo: string) {
+          
         setState((prevState) => {
           return {...prevState, pessoas: [...prevState.pessoas, { nome, idade, sexo }]};
         });
@@ -171,15 +177,15 @@ export default function Home() {
                             </>
                         ))}
                         <YearToMonthForm setMeses={setMeses} />
-                        <Porcentagens/>
+                        <Porcentagens setTaxaMesal={setTaxaMesal} />
                       
                     </FormControl>
-                    <Button onClick={submit}>vai caraio</Button>
+
                 </form>
                
             </Box>
             {/* <CustomizedTable/> */}
-            <CustomizedTables valorInicial={valorInicial} valorEntrada={valorEntrada} parcelaMes={ parcelaMes }/> 
+            <CustomizedTables valorInicial={valorInicial} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={ parcelaMes }/> 
             
         </>
     )
