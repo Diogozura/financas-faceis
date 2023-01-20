@@ -5,14 +5,24 @@ import TableBody from '@mui/material/TableBody';
 import TableHead from '@mui/material/TableHead';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
-
+import InfoIcon from '@mui/icons-material/Info';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
-
-
-
-
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Button } from '@mui/material';
+import Link from 'next/link';
+import { Navigation } from '../../../components/navgation';
+
+
+
+interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window?: () => Window;
+  children: React.ReactElement;
+}
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,6 +43,30 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
+
+
+function ScrollTop(props: Props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+}
+const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const anchor = (
+    (event.target as HTMLDivElement).ownerDocument || document
+  ).querySelector('#back-to-top-anchor');
+
+  if (anchor) {
+    anchor.scrollIntoView({
+      block: 'center',
+    });
+  }
+};
 
 export default function SimpleTable({ valorInicial, error , valorEntrada, parcelaMes, taxaMesal }: any) {
   const Amotização = (valorInicial - valorEntrada) / parcelaMes
@@ -105,7 +139,7 @@ console.log('tem erro?', error)
     <>
 
       <Button disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false}  onClick={handleClick}>Rodaaa </Button>
-      
+      <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
       <Table sx={{ minWidth: 350 }} aria-label="customized  table">
         <TableHead>
           <TableRow>
@@ -157,6 +191,8 @@ console.log('tem erro?', error)
           </TableRow>
         </TableBody>
       </Table>
+      <Link href={'/'}>top</Link>
+      <div id='baixo'></div>
     </>
   );
 }

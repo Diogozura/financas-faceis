@@ -6,15 +6,18 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    font-family: 'Iceberg', cursive;
+    font-family: 'Roboto', cursive;
   }
-  body{
-    /* background-color: #000000; */
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
   }
-  /* body, input, button {
-    font: 14px Roboto, sans-serif;
-  } */
-
+ 
+  html{
+  scroll-behavior: smooth;
+}
   button {
     cursor: pointer;
   }
