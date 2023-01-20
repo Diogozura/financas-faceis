@@ -12,15 +12,16 @@ export default function YearToMonthForm({ setMeses }:any) {
   const handleYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const yearValue:any = event.target.value;
     setYear(yearValue);
+    const mes = yearValue * 12
     setMonth(yearValue * 12);
-    setMeses(yearValue * 12)
+    setMeses(mes)
   };
 
   const handleMonthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const monthValue:any = event.target.value;
     setMonth(monthValue);
-    setMeses(monthValue)
-    
+    const mes = monthValue / 12
+    setMeses(mes)
     setYear(monthValue / 12);
   };
 

@@ -8,10 +8,10 @@ import TableRow from '@mui/material/TableRow';
 
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 
-import Paper from '@mui/material/Paper';
-import { Amortizacao } from '../Amortizacao';
+
+
+
 import { Button } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function SimpleTable({ valorInicial, valorEntrada, parcelaMes, taxaMesal }: any) {
+export default function SimpleTable({ valorInicial, error , valorEntrada, parcelaMes, taxaMesal }: any) {
   const Amotização = (valorInicial - valorEntrada) / parcelaMes
   const saldoDevedor = valorInicial - valorEntrada
 
@@ -43,18 +43,10 @@ export default function SimpleTable({ valorInicial, valorEntrada, parcelaMes, ta
     return juros
   }
 
-
-  const [count, setCount] = React.useState(30);
-
-  const numbers = Array.from(
-    { length: 30 },
-    (_, i) => count - (i - 1)
-  );
   const [items, setItems] = React.useState([]);
 
   function handleClick() {
 
-    console.log('funciona')
     var resultado = '';
     var i = 0;
     var saldoDevedorAtual = saldoDevedor
@@ -101,23 +93,19 @@ export default function SimpleTable({ valorInicial, valorEntrada, parcelaMes, ta
         
       } while (Amotização < saldoDevedorAtual);
      
-      console.log('array', array)
+      
       setItems(array)
     
    return array
   }
-console.log(items)
 
+console.log('tem erro?', error)
 
   return (
     <>
 
-      <Button  onClick={handleClick}>Rodaaa </Button>
-      {/* <ul>
-        {items.map((item, index) => (
-          <li key={index}>{item.juros}</li>
-        ))}
-      </ul> */}
+      <Button disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false}  onClick={handleClick}>Rodaaa </Button>
+      
       <Table sx={{ minWidth: 350 }} aria-label="customized  table">
         <TableHead>
           <TableRow>
@@ -138,7 +126,7 @@ console.log(items)
               </StyledTableCell>
               <StyledTableCell align="left">R$ {num.parcelas.toFixed(2)}</StyledTableCell>
               <StyledTableCell align="left">R$ { num.juros.toFixed(2)}</StyledTableCell>
-              <StyledTableCell align="left">R$ {Amotização.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left">R$ {num.amortizacao.toFixed(2)}</StyledTableCell>
               <StyledTableCell align="left">R$ 200</StyledTableCell>
               <StyledTableCell align="left">R$ {num.saldoDevedor.toFixed(2)}</StyledTableCell>
             </StyledTableRow>

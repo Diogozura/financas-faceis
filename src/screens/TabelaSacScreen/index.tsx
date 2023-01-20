@@ -4,125 +4,83 @@ import React from 'react'
 import styled from 'styled-components'
 import { NumberFormatCustom } from '../../components/number/number'
 import FormControl from '@mui/material/FormControl'
-import Button from '@mui/material/Button'
 import { theme } from '../../../styles/theme'
-import UseYearToMonthConverter from '../../components/mesAno'
-import ConversionForm from '../../components/mesAno'
 import YearToMonthForm from '../../components/mesAno'
 import Porcentagens from '../../components/Porcentagem'
 import CustomizedTables from './TableSac'
-import MyComponent from './table-1'
-import { Amortizacao } from './Amortizacao'
-import CustomizedTable from './table-1'
-import SimpleTable from './TableSac'
 
 
 const Title = styled.h1`
   color:${theme.colors.AzulEscuro};
 `
 type Item = {
-    amortizacao: number,
+    // amortizacao: number,
     valorInicial: number,
     entrada: number,
-    porMes: number,
-    porAno: number,
-    parecelaMes: number,
-    parecelaAno: number,
 };
-
-
-
-
 
 export default function Home() {
     const [Meses, setMeses] = React.useState('');
     const [taxaMesal, setTaxaMesal] = React.useState('')
-    console.log('taxaMesal',taxaMesal)
+    const [error, setError] = React.useState(true)
+    
+    
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar 
         valorInicial: 0,
-
-        // Número de parcelas  
-        parecelaMes: 0,
-        parecelaAno: 0,
-
-        // Porcentagem por mes ou ano 
-        porMes: 0,
-        porAno: 0,
-
         // Valor entrada 
         entrada: 0,
         // amortização 
-        amortizacao: 0,
+        // amortizacao: 0,
     })
+
+    const valorInicial =values.valorInicial
+    const valorEntrada = values.entrada
+    const parcelaMes = Meses
    
-    console.log('qual mês?', Meses)
+
+ 
     const valores = [{
         simble: 'R$',
         name: 'valorInicial',
-        value: values.valorInicial,
-        
+        value: values.valorInicial, 
         label: 'Valor Financiado',
     },
     {
         simble: 'R$',
         name: 'entrada',
         value: values.entrada,
-        
         label: 'Valor de Entrada'
         },
-        {
-            simble: 'R$',
-            name: 'amortizacao',
-            value: values.amortizacao,
-            label: 'amortizacao'
-        }
+        // {
+        //     simble: 'R$',
+        //     name: 'amortizacao',
+        //     value: values.amortizacao,
+        //     label: 'amortizacao'
+        // }
     ]
 
 
     const handlenChange = (event: { target: { value: any; name: any } }) => {
         const fieldValue = event.target.value;
         const fieldName = event.target.name;
-
-        
-
+       
         setValues((currenetValues) => {
             return {
                 ...currenetValues,
                 [fieldName]: fieldValue
             }
+           
         })
 
     }
-    const valorInicial =values.valorInicial
-    const valorEntrada = values.entrada
-    const parcelaMes = Meses
-    const [count, setCount] = React.useState(30);
-    function submit(e: { preventDefault: () => void }) {
-        e.preventDefault()
-      
-        Amortizacao({ valorInicial, valorEntrada, parcelaMes })
-        // SimpleTable(valorInicial, valorEntrada, parcelaMes, taxaMesal)
-        addPessoa( 'nome', 3 , 'sexo' )
-        
-    }
-
+   
+   
+   
     // console.log("valor inicial", values.valorInicial)
 
-    interface Pessoa {
-        nome: string;
-        idade: number;
-        sexo: string;
-      }
       
-      const [state, setState] = React.useState<{ pessoas: Pessoa[] }>({ pessoas: [] });
-    console.log(state.pessoas)
-    function addPessoa(nome: string, idade: number, sexo: string) {
-          
-        setState((prevState) => {
-          return {...prevState, pessoas: [...prevState.pessoas, { nome, idade, sexo }]};
-        });
-      }
+   
     return (
         <>
            
@@ -184,8 +142,8 @@ export default function Home() {
                 </form>
                
             </Box>
-            {/* <CustomizedTable/> */}
-            <CustomizedTables valorInicial={valorInicial} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={ parcelaMes }/> 
+           
+            <CustomizedTables valorInicial={valorInicial} error={error} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={ parcelaMes }/> 
             
         </>
     )
