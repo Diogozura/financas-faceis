@@ -191,7 +191,6 @@ console.log('tem erro?', error)
           </TableRow>
         </TableBody>
       </Table>
-      <Link href={'/'}>top</Link>
       <div id='baixo'></div>
     </>
   );
