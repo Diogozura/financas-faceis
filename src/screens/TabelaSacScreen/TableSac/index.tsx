@@ -153,7 +153,7 @@ console.log('tem erro?', error)
         </TableHead>
         <TableBody>
           
-          {items.map((num, index) => (
+          {items.slice(0, 5).map((num, index) => (
             <StyledTableRow key={num}>
               <StyledTableCell component="th" scope="row">
                 {num.N}
@@ -164,15 +164,20 @@ console.log('tem erro?', error)
               <StyledTableCell align="left">R$ 200</StyledTableCell>
               <StyledTableCell align="left">R$ {num.saldoDevedor.toFixed(2)}</StyledTableCell>
             </StyledTableRow>
-            // <TableRow key={num}>
-
-            //     <TableCell>{index + 1}</TableCell>
-            //     <TableCell>{num}</TableCell>
-            //     <TableCell>R$ 50</TableCell>
-            //     <TableCell>R$ {Amotização.toFixed(2)}</TableCell>
-            //     <TableCell>R$ 20</TableCell>
-            //     <TableCell>R$ 900</TableCell>
-            // </TableRow>
+          
+          ))}
+          {items.slice(-5).map((num, index) => (
+            <StyledTableRow key={num}>
+              <StyledTableCell component="th" scope="row">
+                {num.N}
+              </StyledTableCell>
+              <StyledTableCell align="left">R$ {num.parcelas.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left">R$ { num.juros.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left">R$ {num.amortizacao.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left">R$ 200</StyledTableCell>
+              <StyledTableCell align="left">R$ {num.saldoDevedor.toFixed(2)}</StyledTableCell>
+            </StyledTableRow>
+          
           ))}
 
 
