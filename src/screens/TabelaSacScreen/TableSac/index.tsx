@@ -116,7 +116,7 @@ console.log('tem erro?', error)
   return (
     <>
 
-      <Button disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false}  onClick={handleClick}>Rodaaa </Button>
+      <Button variant="contained" sx={{textAlign: 'center'}} color="success" disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false}  onClick={handleClick}>Rodaaa </Button>
       <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
       <Table sx={{ minWidth: 350 }} aria-label="customized  table">
         <TableHead>
