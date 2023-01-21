@@ -45,28 +45,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-function ScrollTop(props: Props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-}
-const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-  const anchor = (
-    (event.target as HTMLDivElement).ownerDocument || document
-  ).querySelector('#back-to-top-anchor');
-
-  if (anchor) {
-    anchor.scrollIntoView({
-      block: 'center',
-    });
-  }
-};
 
 export default function SimpleTable({ valorInicial, error , valorEntrada, parcelaMes, taxaMesal }: any) {
   const Amotização = (valorInicial - valorEntrada) / parcelaMes
@@ -179,16 +157,6 @@ console.log('tem erro?', error)
             </StyledTableRow>
           
           ))}
-
-
-          {/* <TableRow>
-                        <TableCell>10</TableCell>
-                        <TableCell>5%</TableCell>
-                        <TableCell>${Amotização.toFixed(2)}</TableCell>
-                        <TableCell>$20</TableCell>
-                        <TableCell>$900</TableCell>
-                    </TableRow> */}
-
           <TableRow>
 
 
