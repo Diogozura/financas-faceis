@@ -12,6 +12,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Button } from '@mui/material';
 import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
+import { Botao } from './style';
 
 
 
@@ -115,9 +116,12 @@ console.log('tem erro?', error)
 
   return (
     <>
-
-      <Button variant="contained" sx={{textAlign: 'center'}} color="success" disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false}  onClick={handleClick}>Rodaaa </Button>
-      <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
+      <Botao>
+        <Button variant="contained" sx={{ textAlign: 'center' }} color="success" disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Rodaaa </Button>
+        <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
+    </Botao>
+     
+     
       <Table sx={{ minWidth: 350 }} aria-label="customized  table">
         <TableHead>
           <TableRow>
@@ -136,11 +140,11 @@ console.log('tem erro?', error)
               <StyledTableCell component="th" scope="row">
                 {num.N}
               </StyledTableCell>
-              <StyledTableCell align="left">R$ {num.parcelas.toFixed(2)}</StyledTableCell>
-              <StyledTableCell align="left">R$ { num.juros.toFixed(2)}</StyledTableCell>
-              <StyledTableCell align="left">R$ {num.amortizacao.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left"> {num.parcelas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
+              <StyledTableCell align="left">{ num.juros.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
+              <StyledTableCell align="left">{num.amortizacao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">R$ 200</StyledTableCell>
-              <StyledTableCell align="left">R$ {num.saldoDevedor.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
             </StyledTableRow>
           
           ))}
@@ -168,3 +172,5 @@ console.log('tem erro?', error)
     </>
   );
 }
+
+

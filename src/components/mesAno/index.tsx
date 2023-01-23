@@ -1,9 +1,11 @@
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
-
+import styled from 'styled-components'
+import { Explica } from '../../../styles';
 
 interface Props {
 }
+
 
 export default function YearToMonthForm({ setMeses }:any) {
   const [year, setYear] = useState<any>('');
@@ -27,17 +29,20 @@ export default function YearToMonthForm({ setMeses }:any) {
 
   return (
     <>
+      <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica>
       <TextField
         label="Anos"
-        margin="dense"
+        sx={{marginBottom: 2}}
          id="formatted-numberformat-input"
         variant="outlined"
+        
         value={year}
         onChange={handleYearChange}
       />
       <TextField
         label="Meses"
-        margin="dense"
+        
+        sx={{marginBottom: 2}}
         id="formatted-numberformat-input"
         variant="outlined"
         value={month}
