@@ -1,4 +1,4 @@
-import {  TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import React from 'react'
 import styled from 'styled-components'
 import { NumberFormatCustom } from '../../../components/number/number'
@@ -28,20 +28,20 @@ type Item = {
     // amortizacao: number,
     valorInicial: number,
     entrada: number,
+   
 };
 
 export default function Content() {
     const [Meses, setMeses] = React.useState('');
     const [taxaMesal, setTaxaMesal] = React.useState('')
     const [error, setError] = React.useState(true)
-    const [value, setValue] = React.useState<Moment | null>(
+    const [data, setData] = React.useState<Moment | null>(
         moment()
-      );
-console.log(value.format("MMM / YY"))
+    );
+    console.log(data.format("MMM / YY"))
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar
         valorInicial: 0,
-        // Valor entrada
         entrada: 0,
         // amortização
         // amortizacao: 0,
@@ -54,23 +54,18 @@ console.log(value.format("MMM / YY"))
 
 
     const valores = [{
-        
+
         name: 'valorInicial',
         value: values.valorInicial,
         label: 'Valor Financiado',
     },
     {
-        
+
         name: 'entrada',
         value: values.entrada,
         label: 'Valor de Entrada'
     },
-        // {
-        //     simble: 'R$',
-        //     name: 'amortizacao',
-        //     value: values.amortizacao,
-        //     label: 'amortizacao'
-        // }
+
     ]
 
 
@@ -88,8 +83,8 @@ console.log(value.format("MMM / YY"))
 
     }
     const handleChange = (newValue: Moment | null) => {
-        setValue(newValue);
-      };
+        setData(newValue);
+    };
 
 
     // console.log("valor inicial", values.valorInicial)
@@ -114,14 +109,14 @@ console.log(value.format("MMM / YY"))
                         <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica>
                         {valores.map((item) => (
                             <>
-                                
+
                                 <TextField
                                     label={item.label}
                                     value={item.value}
                                     name={item.name}
                                     required
                                     onChange={handlenChange}
-                                    sx={{marginBottom: 2}}
+                                    sx={{ marginBottom: 2 }}
                                     id="formatted-numberformat-input"
                                     InputProps={{
                                         inputComponent: NumberFormatCustom as any,
@@ -132,23 +127,25 @@ console.log(value.format("MMM / YY"))
                         ))}
                         <YearToMonthForm setMeses={setMeses} />
                         <Porcentagens setTaxaMesal={setTaxaMesal} />
+
                         <LocalizationProvider dateAdapter={AdapterMoment}>
-                        <DesktopDatePicker
-          label="Date desktop"
-          inputFormat="DD/MM/YYYY"
-          value={value}
-          onChange={handleChange}
-          renderInput={(params) => <TextField {...params} />}
-        />
+                            <DesktopDatePicker
+                                views={['year', 'month']}
+                                label="Date desktop"
+                                inputFormat="MM/YYYY"
+                                value={data}
+                                onChange={handleChange}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
                         </LocalizationProvider>
-                      
+
                     </FormControl>
 
                 </form>
 
             </Box>
 
-            <CustomizedTables valorInicial={valorInicial} error={error} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
+            <CustomizedTables valorInicial={valorInicial} error={error} data={data} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
 
         </>
     )

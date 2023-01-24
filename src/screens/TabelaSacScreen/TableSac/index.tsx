@@ -9,10 +9,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
 import { Botao } from './style';
+import moment from 'moment';
 
 
 
@@ -47,24 +48,29 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function SimpleTable({ valorInicial, error , valorEntrada, parcelaMes, taxaMesal }: any) {
+export default function SimpleTable({ valorInicial, error, data, valorEntrada, parcelaMes, taxaMesal }: any) {
   const Amotização = (valorInicial - valorEntrada) / parcelaMes
   const saldoDevedor = valorInicial - valorEntrada
 
-  function CalculoJuros(saldoDevedor, taxaMesal) {
-    const juros = saldoDevedor * taxaMesal
-    return juros
+
+  function CalculoJuros(saldoDevedor: number, taxaMesal: number) : number {
+    const juros = saldoDevedor * taxaMesal;
+    return juros;
   }
-
   const [items, setItems] = React.useState([]);
-
+  const [click, setClick] = React.useState({
+    extra:0
+  })
+  
   function handleClick() {
 
     var resultado = '';
     var i = 0;
     var saldoDevedorAtual = saldoDevedor
-    var array = []
+    var array = [] 
+    const date = moment()
 
+    
       do {
         i += 1;
 
@@ -72,8 +78,8 @@ export default function SimpleTable({ valorInicial, error , valorEntrada, parcel
           const obj = {
           N: 0,
           juros : 0,
-          
           parcelas : 0,
+          data: data.format("MMM / YY"),
           amortizacao : 0,
           saldoDevedor : 0
           };
@@ -85,9 +91,11 @@ export default function SimpleTable({ valorInicial, error , valorEntrada, parcel
           array.push(obj)
         } else {
           var devedorAnterior = array[i - 2].saldoDevedor
+          const newDate = moment( array[i - 2].data, 'MMMM YYYY').add(1, 'months');
           const temp = {
             N: 0,
-            juros : 0,
+            juros: 0,
+            data: newDate.format('MMMM YYYY'),
             parcelas : 0,
             amortizacao : 0,
             saldoDevedor : 0
@@ -112,7 +120,21 @@ export default function SimpleTable({ valorInicial, error , valorEntrada, parcel
    return array
   }
 
-console.log('tem erro?', error)
+  
+  function Click(id, newAmor) {
+    const newArray = [...items];
+    const itemToUpdate = newArray.find(item => item.N === id);
+    itemToUpdate.amortizacao = newAmor;
+    // const itemsToUpdate = newArray.slice(id);
+    // const updatedItems = itemsToUpdate.map(item => ({...item, amortizacao: newAmor}));
+    // newArray.splice(id, updatedItems.length, ...updatedItems);
+    setItems(newArray);
+  
+  }
+  
+  console.log(items)
+
+
 
   return (
     <>
@@ -121,12 +143,15 @@ console.log('tem erro?', error)
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
     </Botao>
      
+      <Box sx={{overflowX:'auto'}}>
+        
      
-      <Table sx={{ minWidth: 350 }} aria-label="customized  table">
+      <Table sx={{minWidth: 350}}  aria-label="customized   table">
         <TableHead>
           <TableRow>
             <StyledTableCell>N</StyledTableCell>
             <StyledTableCell>Parcelas</StyledTableCell>
+            <StyledTableCell>Data</StyledTableCell>
             <StyledTableCell>Juros</StyledTableCell>
             <StyledTableCell>Amortização</StyledTableCell>
             <StyledTableCell>Amortização extra</StyledTableCell>
@@ -136,14 +161,13 @@ console.log('tem erro?', error)
         <TableBody>
           
           {items.slice(0, 5).map((num, index) => (
-            <StyledTableRow key={num}>
-              <StyledTableCell component="th" scope="row">
-                {num.N}
-              </StyledTableCell>
+            <StyledTableRow key={num.N} >
+              <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
               <StyledTableCell align="left"> {num.parcelas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
+              <StyledTableCell align="left"> {num.data}</StyledTableCell>
               <StyledTableCell align="left">{ num.juros.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{num.amortizacao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
-              <StyledTableCell align="left">R$ 200</StyledTableCell>
+              <StyledTableCell align="left" ><Button onClick={() => Click(num.N, 100)} >R$ 300</Button></StyledTableCell>
               <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
             </StyledTableRow>
           
@@ -154,9 +178,11 @@ console.log('tem erro?', error)
                 {num.N}
               </StyledTableCell>
               <StyledTableCell align="left">R$ {num.parcelas.toFixed(2)}</StyledTableCell>
+              <StyledTableCell align="left"> {num.data}</StyledTableCell>
               <StyledTableCell align="left">R$ { num.juros.toFixed(2)}</StyledTableCell>
               <StyledTableCell align="left">R$ {num.amortizacao.toFixed(2)}</StyledTableCell>
               <StyledTableCell align="left">R$ 200</StyledTableCell>
+           
               <StyledTableCell align="left">R$ {num.saldoDevedor.toFixed(2)}</StyledTableCell>
             </StyledTableRow>
           
@@ -167,7 +193,8 @@ console.log('tem erro?', error)
 
           </TableRow>
         </TableBody>
-      </Table>
+        </Table>
+        </Box>
       <div id='baixo'></div>
     </>
   );
