@@ -28,7 +28,7 @@ type Item = {
     // amortizacao: number,
     valorInicial: number,
     entrada: number,
-   
+   extra: number,
 };
 
 export default function Content() {
@@ -43,6 +43,7 @@ export default function Content() {
         // Valor inicial a pagar
         valorInicial: 0,
         entrada: 0,
+        extra: 0,
         // amortização
         // amortizacao: 0,
     })
@@ -50,7 +51,7 @@ export default function Content() {
     const valorInicial = values.valorInicial
     const valorEntrada = values.entrada
     const parcelaMes = Meses
-
+    const extra = values.extra
 
 
     const valores = [{
@@ -67,7 +68,6 @@ export default function Content() {
     },
 
     ]
-
 
     const handlenChange = (event: { target: { value: any; name: any } }) => {
         const fieldValue = event.target.value;
@@ -125,6 +125,19 @@ export default function Content() {
                                 />
                             </>
                         ))}
+                        <TextField
+                                    label='extra'
+                                    value={values.extra}
+                                    name="extra"
+                                    required
+                                    onChange={handlenChange}
+                                    sx={{ marginBottom: 2 }}
+                                    id="formatted-numberformat-input"
+                                    InputProps={{
+                                        inputComponent: NumberFormatCustom as any,
+                                    }}
+                                    variant="outlined"
+                                />
                         <YearToMonthForm setMeses={setMeses} />
                         <Porcentagens setTaxaMesal={setTaxaMesal} />
 
@@ -145,7 +158,7 @@ export default function Content() {
 
             </Box>
 
-            <CustomizedTables valorInicial={valorInicial} error={error} data={data} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
+            <CustomizedTables valorInicial={valorInicial} error={error} data={data} extra={extra} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
 
         </>
     )
