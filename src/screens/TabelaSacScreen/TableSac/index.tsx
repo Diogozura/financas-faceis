@@ -9,7 +9,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import { styled } from '@mui/material/styles';
 import { tableCellClasses } from '@mui/material/TableCell';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
 import { Botao } from './style';
@@ -93,7 +93,7 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
     </Botao>
      
-      <Box sx={{overflowX:'auto'}}>
+      <Box sx={{ overflowX: 'auto' }} height={700}>
         
      
       <Table sx={{minWidth: 350}}  aria-label="customized   table">
@@ -140,13 +140,11 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
             </StyledTableRow>
           
           ))}
-          <TableRow>
-
-
-
-          </TableRow>
-        </TableBody>
+         
+          </TableBody>
+          
         </Table>
+        {items ? <Typography sx={{ textAlign:'center' , marginTop:'10em', } }>Tabela sem dados</Typography>: null}
         </Box>
       <div id='baixo'></div>
     </>
