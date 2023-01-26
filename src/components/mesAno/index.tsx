@@ -29,13 +29,13 @@ export default function YearToMonthForm({ setMeses }:any) {
 
   return (
     <>
-      <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica>
+      {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
       <TextField
         label="Anos"
         sx={{marginBottom: 2}}
          id="formatted-numberformat-input"
         variant="outlined"
-        
+        type={'number'}
         value={year}
         onChange={handleYearChange}
       />

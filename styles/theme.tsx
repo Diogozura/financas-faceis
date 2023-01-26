@@ -6,4 +6,5 @@ export const theme = {
         AzulEscuro: "#232E48",
         font2: '#858585',
     }
+    
 }

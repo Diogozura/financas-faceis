@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material'
+import { TextField, Typography } from '@mui/material'
 import React from 'react'
 import styled from 'styled-components'
 import { NumberFormatCustom } from '../../../components/number/number'
@@ -8,17 +8,18 @@ import YearToMonthForm from '../../../components/mesAno'
 import Porcentagens from '../../../components/Porcentagem'
 import CustomizedTables from '../TableSac'
 import { Explica } from '../../../../styles'
-
 import { Moment } from 'moment'
 import moment from 'moment'
+import 'moment/locale/pt-br';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
+import { DatePicker } from '@mui/x-date-pickers'
 
 
 
 const Box = styled.section`
-  width: 450px;
+  width: 900px;
   margin: auto;
   @media only screen and (max-width: 600px) {
     width: 80%;
@@ -28,7 +29,7 @@ type Item = {
     // amortizacao: number,
     valorInicial: number,
     entrada: number,
-   extra: number,
+    extra: number,
 };
 
 export default function Content() {
@@ -38,7 +39,7 @@ export default function Content() {
     const [data, setData] = React.useState<Moment | null>(
         moment()
     );
-    console.log(data.format("MMM / YY"))
+
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar
         valorInicial: 0,
@@ -82,9 +83,7 @@ export default function Content() {
         })
 
     }
-    const handleChange = (newValue: Moment | null) => {
-        setData(newValue);
-    };
+
 
 
     // console.log("valor inicial", values.valorInicial)
@@ -106,7 +105,8 @@ export default function Content() {
                             flexDirection: 'row',
                             justifyContent: ' space-around',
                         }} variant="standard"  >
-                        <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica>
+                        {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
+                      
                         {valores.map((item) => (
                             <>
 
@@ -126,31 +126,32 @@ export default function Content() {
                             </>
                         ))}
                         <TextField
-                                    label='extra'
-                                    value={values.extra}
-                                    name="extra"
-                                    required
-                                    onChange={handlenChange}
-                                    sx={{ marginBottom: 2 }}
-                                    id="formatted-numberformat-input"
-                                    InputProps={{
-                                        inputComponent: NumberFormatCustom as any,
-                                    }}
-                                    variant="outlined"
-                                />
+                            label='extra'
+                            value={values.extra}
+                            name="extra"
+                            required
+                            onChange={handlenChange}
+                            sx={{ marginBottom: 2 }}
+                            id="formatted-numberformat-input"
+                            InputProps={{
+                                inputComponent: NumberFormatCustom as any,
+                            }}
+                            variant="outlined"
+                        />
                         <YearToMonthForm setMeses={setMeses} />
                         <Porcentagens setTaxaMesal={setTaxaMesal} />
 
-                        <LocalizationProvider dateAdapter={AdapterMoment}>
-                            <DesktopDatePicker
-                                views={['year', 'month']}
-                                label="Date desktop"
-                                inputFormat="MM/YYYY"
+                        <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'pt-br'} >
+                            <DatePicker
                                 value={data}
-                                onChange={handleChange}
+                                views={['year', 'month']}
+                                label="Data de Inicio"
+                                inputFormat="MM/YYYY"
+                                onChange={(newValue) => setData(newValue)}
                                 renderInput={(params) => <TextField {...params} />}
                             />
                         </LocalizationProvider>
+                      
 
                     </FormControl>
 

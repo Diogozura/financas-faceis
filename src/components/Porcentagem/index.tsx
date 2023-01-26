@@ -20,7 +20,7 @@ export default function Porcentagen({setTaxaMesal})  {
   setTaxaMesal(taxaMesal)
   return (
     <>
-      <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica>
+      {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
       <TextField
               label="% Ano"
               sx={{marginBottom: 2}}

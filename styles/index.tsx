@@ -27,5 +27,5 @@ export const Explica = styled.h4`
   color:${theme.colors.font2};
   font-size: 0.8em;
   text-align: left;
-  margin-bottom: 0.5em;
+  margin-bottom: 1em;
 `

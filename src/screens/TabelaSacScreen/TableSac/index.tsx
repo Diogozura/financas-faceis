@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
 import { Botao } from './style';
 import moment from 'moment';
+import { Looping } from './functionLooping';
 
 
 
@@ -53,198 +54,38 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
   const saldoDevedor = valorInicial - valorEntrada
 
 
-  function CalculoJuros(saldoDevedor: number, taxaMesal: number) : number {
-    const juros = saldoDevedor * taxaMesal;
-    return juros;
-  }
   const [items, setItems] = React.useState([]);
  
   
   function handleClick() {
-
-    var resultado = '';
-    var i = 0;
-    var saldoDevedorAtual = saldoDevedor
-    var array = [] 
-    console.log('rodou')
-    var vai = true
-      do {
-        i += 1;
-        if ((Amotização + extra) < saldoDevedorAtual) {
-          vai = true
-          console.log('saldo devedor atual ', saldoDevedorAtual)
-
-
-           if (i == 1) {
-          const obj = {
-          N: 0,
-          juros : 0,
-          parcelas : 0,
-          data: data.format("MMM / YY"),
-          extra: 0,
-          amortizacao : 0,
-          saldoDevedor : 0,
-          };
-          obj.N = i
-          obj.juros = 0;
-          obj.parcelas = 0;
-          obj.amortizacao = 0;
-          obj.extra = 0;
-          obj.saldoDevedor = saldoDevedor;
-          array.push(obj)
-        } else {
-          var devedorAnterior = array[array.length - 1].saldoDevedor
-          const newDate = moment( array[array.length - 1].data, 'MMMM YYYY').add(1, 'months');
-          const temp = {
-            N: 0,
-            juros: 0,
-            data: newDate.format('MMMM YYYY'),
-            parcelas : 0,
-            amortizacao: 0,
-            extra: extra,
-            saldoDevedor : 0
-          }
-          temp.N = i;
-          temp.juros = Math.round( CalculoJuros(devedorAnterior, taxaMesal));
-          temp.amortizacao = Amotização;
-          temp.parcelas = temp.juros + temp.amortizacao + temp.extra;
-          temp.saldoDevedor = (devedorAnterior - Amotização - temp.extra);
-          array.push(temp)
-          saldoDevedorAtual = temp.saldoDevedor
-        }
-        } else {
-          vai = false
-        }
-       
-
-        // resultado += i + ' ';
-        
-     
-    } while (vai);
+  
+    Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra)
+  
     
-    // i += 1
-    // if (saldoDevedorAtual === (Amotização + extra)) {
-    //   var devedorAnterior = array[i - 2].saldoDevedor
-    //   const newDate = moment( array[i - 2].data, 'MMMM YYYY').add(1, 'months');
-    //   const temp = {
-    //     N: 0,
-    //     juros: 0,
-    //     data: newDate.format('MMMM YYYY'),
-    //     parcelas : 0,
-    //     amortizacao: 0,
-    //     extra: extra,
-    //     saldoDevedor : 0
-    //   }
-    //   temp.N = i;
-    //   temp.juros = Math.round( CalculoJuros(devedorAnterior, taxaMesal));
-    //   temp.amortizacao = Amotização;
-    //   temp.parcelas = temp.juros + temp.amortizacao + temp.extra;
-    //   temp.saldoDevedor = (devedorAnterior - Amotização - temp.extra);
-    //   array.push(temp)
-    //   saldoDevedorAtual = temp.saldoDevedor
-    // } else {
-    //   var devedorAnterior = array[i - 2].saldoDevedor
-    //   const newDate = moment( array[i - 2].data, 'MMMM YYYY').add(1, 'months');
-    //   const temp = {
-    //     N: 0,
-    //     juros: 0,
-    //     data: newDate.format('MMMM YYYY'),
-    //     parcelas : 0,
-    //     amortizacao: 0,
-    //     extra: extra,
-    //     saldoDevedor : 0
-    //   }
    
-      
-    //   temp.N = i;
-    //   if (extra >= saldoDevedorAtual ) {
-    //     temp.extra = 0
-    //   } else {
-    //     temp.extra = 0
-    //     temp.amortizacao = saldoDevedorAtual - extra
-    //   }
-     
-    //   temp.juros = Math.round( CalculoJuros(devedorAnterior, taxaMesal));
-      
-    //   temp.parcelas = temp.juros + temp.amortizacao + temp.extra;
-    //   temp.saldoDevedor = (devedorAnterior - temp.amortizacao - temp.extra);
-    //   array.push(temp)
-    //   saldoDevedorAtual = temp.saldoDevedor
-    //   }
-      console.log("array temporario", array[2].extra)
-      setItems(array)
-    console.log()
-   return array
   }
 
   
-  // function Click(id, newAmor) {
-  //   const newArray = [...items];
+  function Click(id, newAmor) {
+    const newArray = [...items];
 
-  //   const itemToUpdate = newArray.find(item => item.N === id);
-  //   itemToUpdate.amortizacao = newAmor;
+    const itemToUpdate = newArray.find(item => item.N === id);
+    itemToUpdate.amortizacao = newAmor;
 
-  //   // const itemsToUpdate = newArray.slice(id);
-  //   // const updatedItems = itemsToUpdate.map(item => ({...item, extra: newAmor}));
-  //   // newArray.splice(id, updatedItems.length, ...updatedItems);
-  //   ReCalc(id)
-  //   setItems(newArray);
-   
-  // }
-
-  function analisa() {
-    
+    // const itemsToUpdate = newArray.slice(id);
+    // const updatedItems = itemsToUpdate.map(item => ({...item, extra: newAmor}));
+    // newArray.splice(id, updatedItems.length, ...updatedItems);
+ 
+   ReCalc( newAmor)
   }
+
+
   
-  function ReCalc(id) {
-  console.log(id)
-    
-    // var saldoDevedorAtual = saldoDevedor
-    // var resultado = '';
-    // var i = 0;
-    // var newList = []
-    
-    // do {
-    //   i += 1;
-    //   if (i < id) {
-    //     const newArray = [...items];
-    //     const itemToUpdate = newArray.find(item => item.N === id);
-    //     saldoDevedorAtual = itemToUpdate.saldoDevedor 
-        
-    //     newList.push(itemToUpdate)
-    //   } else {
-    //     console.log("lista 2",newList[i - 2 ])
-    //     console.log("lista 1", newList[i - 1 ])
-    //     var devedorAnterior = newList[i - 2].saldoDevedor
-    //     const newDate = moment( newList[i - 2].data, 'MMMM YYYY').add(1, 'months');
-    //     const temp = {
-    //       N: 0,
-    //       juros: 0,
-    //       data: newDate.format('MMMM YYYY'),
-    //       parcelas : 0,
-    //       amortizacao: 0,
-    //       extra: 0,
-    //       saldoDevedor : 0
-    //     }
-    //     temp.N = i;
-    //     temp.juros = Math.round( CalculoJuros(devedorAnterior, taxaMesal));
-    //     temp.amortizacao = Amotização;
-    //     temp.extra = extra;
-    //     temp.parcelas = temp.juros + temp.amortizacao + extra;
-    //     temp.saldoDevedor = (devedorAnterior - Amotização - extra);
-    //     newList.push(temp)
-    //     saldoDevedorAtual = temp.saldoDevedor
-    //   }
-
-    //   resultado += i + ' ';
-
-      
-    // } while (Amotização < saldoDevedorAtual);
-    // setItems(newList)
-    // return newList
+  function ReCalc( newAmor) {
+    Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, newAmor)
   }
 
-console.log("ultimo item", items.slice(-1))
+
   return (
     <>
       <Botao>
@@ -277,7 +118,10 @@ console.log("ultimo item", items.slice(-1))
               <StyledTableCell align="left"> {num.parcelas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{ num.juros.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{num.amortizacao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
-              <StyledTableCell align="left" ><Button onClick={() => ReCalc(num.N)} >{num.extra }</Button></StyledTableCell>
+              <StyledTableCell align="left" >
+                <Button onClick={() => Click(num.N, 200)} >{num.extra}</Button>
+                {/* {num.extra} */}
+              </StyledTableCell>
               <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
             </StyledTableRow>
           

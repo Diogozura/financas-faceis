@@ -13,6 +13,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import Content from './Content';
 import Head from 'next/head';
+import Footer from '../../components/Footer';
 
 interface Props {
     /**
@@ -71,7 +72,6 @@ export default function BackToTop(props: Props) {
             </Head>
             <React.Fragment>
 
-                <CssBaseline />
                 {/* <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div">
@@ -81,15 +81,37 @@ export default function BackToTop(props: Props) {
       </AppBar> */}
                 <Toolbar id="back-to-top-anchor" />
                 <Container>
-                    {/* FORM E TABELA  */}
+                    <Typography
+                        variant='h1'
+                        fontSize={'3em'}
+                        fontWeight={500}
+                        textAlign={'center'}
+                        marginBottom={2}
+                        
+                        sx={{textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', textDecorationLine: 'underline'}}
+                        >
+                        Calculo da Tabela Sac</Typography>
+                    <Box>destinado para Share </Box>
+                <Box margin={'auto'} marginBottom={5} borderRadius={3} boxShadow={10} width={'80%'} padding={2}>
+                    <Typography variant='h4' fontSize={'1em'} fontWeight={400}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. In inventore, fugiat quia nisi officia ducimus tempore incidunt officiis eveniet molestiae alias. Asperiores, omnis obcaecati. Mollitia ipsam ducimus modi quas laudantium?
+                    </Typography>
+                </Box>
+                {/* FORM E TABELA  */}
                     <Content />
+                    
+                    <Box>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, natus ex. Libero quibusdam mollitia aperiam praesentium, consequuntur facilis. Reiciendis aspernatur hic libero rem quos. Soluta sit vero porro quidem rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsam tempora, aspernatur repellendus harum sequi qui assumenda nisi culpa nam commodi modi. Et quis reprehenderit minus dolorem aut nisi! Sint?
+                    </Box>
+                   
                 </Container>
-                <ScrollTop {...props}>
-                    <Fab size="small" aria-label="scroll back to top">
-                        <KeyboardArrowUpIcon />
-                    </Fab>
-                </ScrollTop>
-            </React.Fragment>
+                <Footer/>
+            <ScrollTop {...props}>
+                <Fab size="small" aria-label="scroll back to top">
+                    <KeyboardArrowUpIcon />
+                </Fab>
+            </ScrollTop>
+        </React.Fragment>
         </>
     );
 }
