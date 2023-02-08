@@ -64,11 +64,11 @@ export default function Porcentagens({setTaxaMesal}:any)  {
   };
 
   const convertToMonth = (yearPercentage) => (yearPercentage / 12).toFixed(2);
-  const convertToYear = (monthPercentage) => (
+  const convertToYear = (monthPercentage : number) => (
   monthPercentage * 12).toFixed(2);
 
 
-const taxaMesal = ( 1 + convertToYear(value)/100 ) ** ( 1/12 ) -1
+const taxaMesal = ( 1 + +convertToYear(value)/100 ) ** ( 1/12 ) -1
 setTaxaMesal(taxaMesal.toFixed(2))
   return (
     <form>
