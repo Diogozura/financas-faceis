@@ -104,13 +104,13 @@ export default function Content() {
         <>
 
             {/* <MyComponent/> */}
-            <Box  sx={{
-                            width: '500px',
-                            padding:'10px',
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            flexDirection: 'row',
-                            justifyContent: ' space-around',
+            <Box style={{
+                            'width': '500px',
+                            'padding':'10px',
+                            'display': 'flex',
+                            'flexWrap': 'wrap',
+                            'flexDirection': 'row',
+                            'justifyContent': ' space-around',
                         }}>
                 <form >
 
