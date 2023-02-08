@@ -5,7 +5,7 @@ import { NumberFormatCustom } from '../../../components/number/number'
 import FormControl from '@mui/material/FormControl'
 import { theme } from '../../../../styles/theme'
 import YearToMonthForm from '../../../components/mesAno'
-import Porcentagens from '../../../components/Porcentagem'
+import Porcentagens from './Porcentagem'
 import CustomizedTables from '../TableSac'
 import { Explica } from '../../../../styles'
 import { Moment } from 'moment'
@@ -15,6 +15,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
 import { DatePicker } from '@mui/x-date-pickers'
+import YearAndMonthConverter from './AnosToMeses'
+import dynamic from 'next/dynamic'
+
+
+const Porcentagem = dynamic(
+    () => import('./Porcentagem'),
+    { loading: () => <p>Loading ...</p>, ssr: true }
+  )
 
 
 
@@ -25,12 +33,15 @@ const Box = styled.section`
     width: 80%;
 }
 `
+
+
 type Item = {
     // amortizacao: number,
     valorInicial: number,
     entrada: number,
     extra: number,
 };
+
 
 export default function Content() {
     const [Meses, setMeses] = React.useState('');
@@ -40,6 +51,7 @@ export default function Content() {
         moment()
     );
 
+    console.log('taxa mensal', taxaMesal)
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar
         valorInicial: 0,
@@ -70,6 +82,8 @@ export default function Content() {
 
     ]
 
+    
+
     const handlenChange = (event: { target: { value: any; name: any } }) => {
         const fieldValue = event.target.value;
         const fieldName = event.target.name;
@@ -86,30 +100,30 @@ export default function Content() {
 
 
 
-    // console.log("valor inicial", values.valorInicial)
-
-
-
     return (
         <>
 
             {/* <MyComponent/> */}
-            <Box>
-                <form >
-
-                    <FormControl
-                        color='info'
-                        sx={{
+            <Box  sx={{
+                            width: '500px',
+                            padding:'10px',
                             display: 'flex',
                             flexWrap: 'wrap',
                             flexDirection: 'row',
                             justifyContent: ' space-around',
-                        }} variant="standard"  >
-                        {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
-                      
-                        {valores.map((item) => (
-                            <>
+                        }}>
+                <form >
 
+                    <FormControl
+                        color='info'
+                       variant="standard"  >
+                        {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
+                        <aside style={{    'display': 'flex',
+    'justifyContent':'spaceBetween', 'flexWrap': 'wrap'
+  }}>
+                        {valores.map((item) => (
+                            < >
+        
                                 <TextField
                                     label={item.label}
                                     value={item.value}
@@ -125,7 +139,8 @@ export default function Content() {
                                 />
                             </>
                         ))}
-                        <TextField
+                             </aside>
+                        {/* <TextField
                             label='extra'
                             value={values.extra}
                             name="extra"
@@ -137,10 +152,15 @@ export default function Content() {
                                 inputComponent: NumberFormatCustom as any,
                             }}
                             variant="outlined"
-                        />
-                        <YearToMonthForm setMeses={setMeses} />
-                        <Porcentagens setTaxaMesal={setTaxaMesal} />
-
+                        /> */}
+                        {/* <YearToMonthForm setMeses={setMeses} /> */}
+                        <aside style={{'display': 'flex',
+    'alignItems': 'center', 'flexWrap': 'wrap'}}>
+                        <YearAndMonthConverter setMeses={setMeses}/>
+                        <Porcentagem setTaxaMesal={setTaxaMesal} />
+                        </aside>
+                        
+{/* 
                         <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'pt-br'} >
                             <DatePicker
                                 value={data}
@@ -150,13 +170,15 @@ export default function Content() {
                                 onChange={(newValue) => setData(newValue)}
                                 renderInput={(params) => <TextField {...params} />}
                             />
-                        </LocalizationProvider>
+                        </LocalizationProvider> */}
                       
 
                     </FormControl>
 
                 </form>
-
+                <p>{Meses} Meses</p>
+                <p>{taxaMesal} Taxa</p>
+               
             </Box>
 
             <CustomizedTables valorInicial={valorInicial} error={error} data={data} extra={extra} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />

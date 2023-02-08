@@ -13,7 +13,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fade from '@mui/material/Fade';
 import Content from './Content';
 import Head from 'next/head';
-import Footer from '../../components/Footer';
+import BaseSite from '../../components/Base';
 
 interface Props {
     /**
@@ -70,6 +70,8 @@ export default function BackToTop(props: Props) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <BaseSite>
+           
             <React.Fragment>
 
                 {/* <AppBar>
@@ -98,20 +100,21 @@ export default function BackToTop(props: Props) {
                     </Typography>
                 </Box>
                 {/* FORM E TABELA  */}
-                    <Content />
+                <Content />
                     
                     <Box>
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, natus ex. Libero quibusdam mollitia aperiam praesentium, consequuntur facilis. Reiciendis aspernatur hic libero rem quos. Soluta sit vero porro quidem rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsam tempora, aspernatur repellendus harum sequi qui assumenda nisi culpa nam commodi modi. Et quis reprehenderit minus dolorem aut nisi! Sint?
                     </Box>
                    
                 </Container>
-                <Footer/>
+                
             <ScrollTop {...props}>
                 <Fab size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon />
                 </Fab>
             </ScrollTop>
-        </React.Fragment>
+                </React.Fragment>
+                </BaseSite>
         </>
     );
 }

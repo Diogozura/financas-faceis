@@ -51,7 +51,7 @@ const footer = [
         categoria: 'Privacidade',
         item1: {
             nome: 'politicas de Privacidade',
-            link: '/404'
+            link: '/politicas-de-privacidade'
         },
         item2: {
             nome: 'Preferencias de Cookie',
