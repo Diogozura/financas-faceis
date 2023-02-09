@@ -31,13 +31,27 @@ const AnoMes = dynamic(
 
 
 const Box = styled.section`
-  width: 900px;
-  margin: auto;
-  @media only screen and (max-width: 600px) {
+width: 900px;
+margin: auto;
+margin: auto;
+flex-wrap: wrap;
+flex-direction: row;
+justify-content:  space-around;
+  @media only screen and (max-width: 840px) {
     width: 80%;
 }
 `
-
+const Inputs = styled.aside`
+align-items: center;
+display: flex;
+flex-wrap: wrap;
+ width: 800px;
+ justify-content: space-between;
+ @media only screen and (max-width: 840px) {
+    width: 80%;
+    flex-direction: column;
+}
+`
 
 type Item = {
     // amortizacao: number,
@@ -108,24 +122,14 @@ export default function Content() {
         <>
 
             {/* <MyComponent/> */}
-            <Box style={{
-                'maxWidth': '800px',
-                // 'padding': '10px',
-                'margin': 'auto',
-                'flexWrap': 'wrap',
-                'flexDirection': 'row',
-                'justifyContent': ' space-around',
-            }}>
+            <Box>
                 <form >
 
                     <FormControl
                         color='info'
                         variant="standard"  >
                         {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
-                        <aside style={{
-                            'display': 'flex',
-                            'justifyContent': 'space-between', 'flexWrap': 'wrap'
-                        }}>
+                        <Inputs >
                             {valores.map((item) => (
                                 < >
 
@@ -134,10 +138,10 @@ export default function Content() {
                                         value={item.value}
                                         name={item.name}
                                         required
-                                        fullWidth
+
                                         onChange=
                                         {handlenChange}
-                                        sx={{ marginBottom: 2 , width:280}}
+                                        sx={{ marginBottom: 2, width: 280 }}
                                         id="formatted-numberformat-input"
                                         InputProps={{
                                             inputComponent: NumberFormatCustom as any,
@@ -146,7 +150,7 @@ export default function Content() {
                                     />
                                 </>
                             ))}
-                        </aside>
+                        </Inputs>
                         {/* <TextField
                             label='extra'
                             value={values.extra}
@@ -161,13 +165,10 @@ export default function Content() {
                             variant="outlined"
                         /> */}
                         {/* <YearToMonthForm setMeses={setMeses} /> */}
-                        <aside style={{
-                           
-                            'alignItems': 'center', 'flexWrap': 'wrap'
-                        }}>
+                        <Inputs>
                             <AnoMes setMeses={setMeses} />
                             <Porcentagem setTaxaMesal={setTaxaMesal} />
-                        </aside>
+                        </Inputs>
 
                         {/* 
                         <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'pt-br'} >

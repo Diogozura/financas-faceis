@@ -104,7 +104,7 @@ export default function Porcentagens({ setTaxaMesal }: any) {
       </p> */}
       {/* </form> */}
 
-      <FormControl  sx={{ display: 'flex', flexDirection: 'row' }} >
+      <FormControl  sx={{ display: 'flex',marginBottom:5,  flexDirection: 'row' }} >
       <TextField
         label={unit}
         // type="number"

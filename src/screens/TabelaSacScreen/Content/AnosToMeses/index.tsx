@@ -35,7 +35,7 @@ export default function YearAndMonthConverter({ setMeses }: any) {
 
   return (
     <aside >
-      <FormControl sx={{ display: 'flex', maxWidth: 400, flexDirection: 'row' }} >
+      <FormControl sx={{ display: 'flex',marginBottom:5,  maxWidth: 400, flexDirection: 'row' }} >
         <TextField
           label={unit}
           // type="number"
