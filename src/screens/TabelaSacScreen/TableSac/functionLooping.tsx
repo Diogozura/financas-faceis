@@ -6,12 +6,14 @@ function CalculoJuros(saldoDevedor: number, taxaMesal: number) : number {
   }
 
 export function Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra) {
-    console.log('1234421341')
-    console.log('saldoDevedor', saldoDevedor)
-    console.log('taxaMesal', taxaMesal)
-    console.log('Amotização', Amotização)
-    console.log('data', data)
-    console.log('extra', extra)
+   
+  //   console.log('saldoDevedor', saldoDevedor)
+  //   console.log('taxaMesal', taxaMesal)
+  //   console.log('Amotização', Amotização)
+  //   console.log('data', data)
+  // console.log('extra', extra)
+
+
     var i = 0;
     var saldoDevedorAtual = saldoDevedor
     var array = [] 
@@ -21,12 +23,12 @@ export function Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, dat
         i += 1;
 
           if (i == 1) {
-              console.log('entrou no if')
+              // console.log('entrou no if')
           const obj = {
           N: 0,
           juros : 0,
           parcelas : 0,
-          data: data.format("MMM YY"),
+          data: data.format("MM/YYYY"),
           extra: 0,
           amortizacao : 0,
           saldoDevedor : 0,
@@ -40,13 +42,13 @@ export function Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, dat
           array.push(obj)
           }
           else {
-        console.log('entrou no else')
+        // console.log('entrou no else')
           var devedorAnterior = array[array.length - 1].saldoDevedor
-          const newDate = moment( array[array.length - 1].data, 'MMMM YYYY').add(1, 'months');
+          const newDate = moment( array[array.length - 1].data, 'MM/YYYY').add(1, 'months');
           const temp = {
             N: 0,
             juros: 0,
-            data: newDate.format('MMMM YYYY'),
+            data: newDate.format('MM/YYYY'),
             parcelas : 0,
             amortizacao: 0,
             extra: extra,
