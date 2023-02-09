@@ -21,8 +21,12 @@ import dynamic from 'next/dynamic'
 
 const Porcentagem = dynamic(
     () => import('./Porcentagem'),
-    { loading: () => <p>Loading ...</p>, ssr: true }
-  )
+    { loading: () => <p>Loading ...</p>, ssr: false }
+)
+const AnoMes = dynamic(
+    () => import('./AnosToMeses'),
+    { loading: () => <p>Loading ...</p>, ssr: false }
+)
 
 
 
@@ -82,7 +86,7 @@ export default function Content() {
 
     ]
 
-    
+
 
     const handlenChange = (event: { target: { value: any; name: any } }) => {
         const fieldValue = event.target.value;
@@ -105,41 +109,44 @@ export default function Content() {
 
             {/* <MyComponent/> */}
             <Box style={{
-                            'width': '500px',
-                            'padding':'10px',
-                            'display': 'flex',
-                            'flexWrap': 'wrap',
-                            'flexDirection': 'row',
-                            'justifyContent': ' space-around',
-                        }}>
+                'maxWidth': '800px',
+                // 'padding': '10px',
+                'margin': 'auto',
+                'flexWrap': 'wrap',
+                'flexDirection': 'row',
+                'justifyContent': ' space-around',
+            }}>
                 <form >
 
                     <FormControl
                         color='info'
-                       variant="standard"  >
+                        variant="standard"  >
                         {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
-                        <aside style={{    'display': 'flex',
-    'justifyContent':'spaceBetween', 'flexWrap': 'wrap'
-  }}>
-                        {valores.map((item) => (
-                            < >
-        
-                                <TextField
-                                    label={item.label}
-                                    value={item.value}
-                                    name={item.name}
-                                    required
-                                    onChange={handlenChange}
-                                    sx={{ marginBottom: 2 }}
-                                    id="formatted-numberformat-input"
-                                    InputProps={{
-                                        inputComponent: NumberFormatCustom as any,
-                                    }}
-                                    variant="outlined"
-                                />
-                            </>
-                        ))}
-                             </aside>
+                        <aside style={{
+                            'display': 'flex',
+                            'justifyContent': 'space-between', 'flexWrap': 'wrap'
+                        }}>
+                            {valores.map((item) => (
+                                < >
+
+                                    <TextField
+                                        label={item.label}
+                                        value={item.value}
+                                        name={item.name}
+                                        required
+                                        fullWidth
+                                        onChange=
+                                        {handlenChange}
+                                        sx={{ marginBottom: 2 , width:280}}
+                                        id="formatted-numberformat-input"
+                                        InputProps={{
+                                            inputComponent: NumberFormatCustom as any,
+                                        }}
+                                        variant="outlined"
+                                    />
+                                </>
+                            ))}
+                        </aside>
                         {/* <TextField
                             label='extra'
                             value={values.extra}
@@ -154,13 +161,15 @@ export default function Content() {
                             variant="outlined"
                         /> */}
                         {/* <YearToMonthForm setMeses={setMeses} /> */}
-                        <aside style={{'display': 'flex',
-    'alignItems': 'center', 'flexWrap': 'wrap'}}>
-                        <YearAndMonthConverter setMeses={setMeses}/>
-                        <Porcentagem setTaxaMesal={setTaxaMesal} />
+                        <aside style={{
+                           
+                            'alignItems': 'center', 'flexWrap': 'wrap'
+                        }}>
+                            <AnoMes setMeses={setMeses} />
+                            <Porcentagem setTaxaMesal={setTaxaMesal} />
                         </aside>
-                        
-{/* 
+
+                        {/* 
                         <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'pt-br'} >
                             <DatePicker
                                 value={data}
@@ -171,14 +180,14 @@ export default function Content() {
                                 renderInput={(params) => <TextField {...params} />}
                             />
                         </LocalizationProvider> */}
-                      
+
 
                     </FormControl>
 
                 </form>
                 <p>{Meses} Meses</p>
                 <p>{taxaMesal} Taxa</p>
-               
+
             </Box>
 
             <CustomizedTables valorInicial={valorInicial} error={error} data={data} extra={extra} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
