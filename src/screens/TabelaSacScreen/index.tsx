@@ -71,50 +71,63 @@ export default function BackToTop(props: Props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <BaseSite>
-           
-            <React.Fragment>
 
-                {/* <AppBar>
+                <React.Fragment>
+
+                    {/* <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div">
             Scroll to see button
           </Typography>
         </Toolbar>
       </AppBar> */}
-                <Toolbar id="back-to-top-anchor" />
-                <Container>
-                    <Typography
-                        variant='h1'
-                        fontSize={'3em'}
-                        fontWeight={500}
-                        textAlign={'center'}
-                        marginBottom={2}
-                        
-                        sx={{textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', textDecorationLine: 'underline'}}
+                    <Toolbar id="back-to-top-anchor" />
+                    <Container>
+                        <Typography
+                            variant='h1'
+                            fontSize={'3em'}
+                            fontWeight={500}
+                            textAlign={'center'}
+                            marginBottom={2}
+
+                            sx={{ textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', textDecorationLine: 'underline' }}
                         >
-                        Calculo da Tabela Sac</Typography>
-                    <Box>destinado para Share </Box>
-                <Box margin={'auto'} marginBottom={5} borderRadius={3} boxShadow={10} width={'80%'} padding={2}>
-                    <Typography variant='h4' fontSize={'1em'} fontWeight={400}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. In inventore, fugiat quia nisi officia ducimus tempore incidunt officiis eveniet molestiae alias. Asperiores, omnis obcaecati. Mollitia ipsam ducimus modi quas laudantium?
-                    </Typography>
-                </Box>
-                {/* FORM E TABELA  */}
-                <Content />
+                            Calculo da Tabela Sac</Typography>
+                        <Box>destinado para Share </Box>
+                        <Box margin={'auto'} marginBottom={5} borderRadius={3} boxShadow={10} width={'80%'} padding={2}>
+                            <Typography variant='h4' fontSize={'1em'} fontWeight={400}>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In inventore, fugiat quia nisi officia ducimus tempore incidunt officiis eveniet molestiae alias. Asperiores, omnis obcaecati. Mollitia ipsam ducimus modi quas laudantium?
+                            </Typography>
+                        </Box>
+                        {/* FORM E TABELA  */}
+                        <Content />
                     
-                    <Box>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, natus ex. Libero quibusdam mollitia aperiam praesentium, consequuntur facilis. Reiciendis aspernatur hic libero rem quos. Soluta sit vero porro quidem rerum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsam tempora, aspernatur repellendus harum sequi qui assumenda nisi culpa nam commodi modi. Et quis reprehenderit minus dolorem aut nisi! Sint?
-                    </Box>
-                   
-                </Container>
-                
-            <ScrollTop {...props}>
-                <Fab size="small" aria-label="scroll back to top">
-                    <KeyboardArrowUpIcon />
-                </Fab>
-            </ScrollTop>
+                        <Box sx={{ maxWidth: 700, m: 'auto' }}>
+                            <Typography variant='h2'>O que é a Tabela SAC?</Typography>
+                            <Typography sx={{mb:2}}>
+                            O sistema SAC (Sistema de Amortização Constante) é uma forma comum de financiamento de imóveis no Brasil. Ele é semelhante ao sistema Price, mas as parcelas incluem tanto juros quanto amortização. Isso significa que, a cada mês, uma parte da parcela é usada para pagar os juros e outra parte é usada para reduzir o saldo do empréstimo.
+                            </Typography>
+                            <Typography sx={{mb:2}}>
+                            Uma das principais vantagens do sistema SAC é que, como as parcelas incluem amortização, o valor da dívida diminui ao longo do tempo. Isso significa que, no final do período de financiamento, o comprador terá pago menos juros em comparação com o sistema Price. Além disso, o sistema SAC geralmente permite que o comprador pague parcelas menores no início do financiamento, o que pode ser uma boa opção para quem tem um orçamento apertado.
+                            </Typography>
+                            <Typography sx={{ mb: 2 }}>
+                            Porém, existe também algumas desvantagens do sistema SAC. Como as parcelas incluem amortização, elas geralmente são mais altas do que as parcelas do sistema Price. Além disso, como o valor da dívida diminui ao longo do tempo, o comprador pode acabar pagando mais juros no início do financiamento.
+                            </Typography>
+                            <Typography sx={{ mb: 2 }}>
+                            Em resumo, o sistema SAC é uma boa opção para quem quer pagar menos juros ao longo do tempo e tem flexibilidade no orçamento. No entanto, é importante lembrar que as parcelas são geralmente mais altas do que as parcelas do sistema Price e é importante avaliar se é possível arcar com elas ao longo do tempo.
+                            </Typography>
+                           
+                        </Box>
+
+                    </Container>
+
+                    <ScrollTop {...props}>
+                        <Fab size="small" aria-label="scroll back to top">
+                            <KeyboardArrowUpIcon />
+                        </Fab>
+                    </ScrollTop>
                 </React.Fragment>
-                </BaseSite>
+            </BaseSite>
         </>
     );
 }

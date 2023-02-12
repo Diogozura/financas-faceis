@@ -15,6 +15,7 @@ import { Navigation } from '../../../components/navgation';
 import { Botao } from './style';
 import moment from 'moment';
 import { Looping } from './functionLooping';
+import { theme } from '../../../../styles/theme';
 
 
 
@@ -29,7 +30,7 @@ interface Props {
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#201E50',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -89,18 +90,18 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
   return (
     <>
       <Botao>
-        <Button variant="contained" sx={{ textAlign: 'center' }} color="success" disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Rodaaa </Button>
+        <Button variant="contained" sx={{ textAlign: 'center', bgcolor: theme.colors.link }}  disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Gerar tabela </Button>
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
     </Botao>
      
       <Box sx={{ overflowX: 'auto' }} height={700}>
         
      
-      <Table sx={{minWidth: 350}}  aria-label="customized   table">
-        <TableHead>
-            <TableRow>
-              <StyledTableCell>N</StyledTableCell>
-              <StyledTableCell>Data</StyledTableCell>
+      <Table sx={{minWidth: 350 }}  aria-label="customized   table">
+        <TableHead >
+            <TableRow sx={{bgcolor:'#201E50'}}>
+            <StyledTableCell >N</StyledTableCell>
+            <StyledTableCell>Data</StyledTableCell>
             <StyledTableCell>Parcelas</StyledTableCell>
             <StyledTableCell>Juros</StyledTableCell>
             <StyledTableCell>Amortização</StyledTableCell>
