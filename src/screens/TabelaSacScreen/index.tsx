@@ -89,21 +89,21 @@ export default function BackToTop(props: Props) {
                             fontWeight={500}
                             textAlign={'center'}
                             marginBottom={2}
-
+                            marginTop={5}
                             sx={{ textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', textDecorationLine: 'underline' }}
                         >
-                            Calculo da Tabela Sac</Typography>
-                        <Box>destinado para Share </Box>
-                        <Box margin={'auto'} marginBottom={5} borderRadius={3} boxShadow={10} width={'80%'} padding={2}>
+                           Tabela SAC </Typography>
+                        {/* <Box>destinado para Share </Box> */}
+                        <Box margin={'auto'} marginBottom={5} sx={{bgcolor:'#F4F4F4'}} borderRadius="10px"  maxWidth={'90%'} padding={3}>
                             <Typography variant='h4' fontSize={'1em'} fontWeight={400}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In inventore, fugiat quia nisi officia ducimus tempore incidunt officiis eveniet molestiae alias. Asperiores, omnis obcaecati. Mollitia ipsam ducimus modi quas laudantium?
+                            O sistema SAC (Sistema de Amortização Constante) é uma forma comum de financiamento de imóveis no Brasil. Ele é semelhante ao sistema Price, mas as parcelas incluem tanto juros quanto amortização. 
                             </Typography>
                         </Box>
                         {/* FORM E TABELA  */}
                         <Content />
                     
-                        <Box sx={{ maxWidth: 700, m: 'auto' }}>
-                            <Typography variant='h2'>O que é a Tabela SAC?</Typography>
+                        <Box borderRadius={2} padding={4}    sx={{ maxWidth: 700, m: 'auto', mb:'7em' , bgcolor:'#F4F4F4',  }}>
+                            <Typography variant='h3' sx={{mb:2}}>O que é a Tabela SAC?</Typography>
                             <Typography sx={{mb:2}}>
                             O sistema SAC (Sistema de Amortização Constante) é uma forma comum de financiamento de imóveis no Brasil. Ele é semelhante ao sistema Price, mas as parcelas incluem tanto juros quanto amortização. Isso significa que, a cada mês, uma parte da parcela é usada para pagar os juros e outra parte é usada para reduzir o saldo do empréstimo.
                             </Typography>

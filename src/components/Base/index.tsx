@@ -21,7 +21,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import Slide from '@mui/material/Slide';
 
 interface Props {
     /**
@@ -32,42 +32,23 @@ interface Props {
     children: React.ReactElement;
 }
 
-function ScrollTop(props: Props) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    const trigger = useScrollTrigger({
-        target: window ? window() : undefined,
-        disableHysteresis: true,
-        threshold: 100,
-    });
 
-    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        const anchor = (
-            (event.target as HTMLDivElement).ownerDocument || document
-        ).querySelector('#back-to-top-anchor');
 
-        if (anchor) {
-            anchor.scrollIntoView({
-                block: 'center',
-            });
-        }
-    };
+function HideOnScroll(props: Props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
 
-    return (
-        <Fade in={trigger}>
-            <Box
-                onClick={handleClick}
-                role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
-            >
-                {children}
-            </Box>
-        </Fade>
-    );
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  );
 }
-
 export default function BaseSite({ children }, props: Props) {
     
 const drawerWidth = 240;
@@ -118,8 +99,9 @@ const navItems = ['Home', 'About', 'Contact'];
           </Typography>
         </Toolbar>'
       </AppBar> */}
-                 <AppBar component="nav">
-        <Toolbar>
+            <HideOnScroll {...props}>
+                 <AppBar component="nav" sx={{bgcolor:'#201E50' , mb:'5em'}}>
+        <Toolbar >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -144,7 +126,8 @@ const navItems = ['Home', 'About', 'Contact'];
             ))}
           </Box>
         </Toolbar>
-                </AppBar>
+            </AppBar>
+            </HideOnScroll>
                 <Box component="nav">
         <Drawer
           container={container}
@@ -164,8 +147,10 @@ const navItems = ['Home', 'About', 'Contact'];
       </Box>
                 {/* <Toolbar id="back-to-top-anchor" /> */}
              
-                 
-                   {children}
+         
+          {children}
+                
+                  
                     
                    <PremisionCookie/>
                 <Footer/>

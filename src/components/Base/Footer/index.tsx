@@ -1,5 +1,6 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import Link from "next/link";
+import { theme } from "../../../../styles/theme";
 
 const footer = [
     {
@@ -65,16 +66,16 @@ const footer = [
 
 export default function Footer() {
     return (
-        <Box padding={3} sx={{ backgroundColor: '#D9D9D9' }}>
-              <Box width={'100%'} display={'flex'} justifyContent={'space-around'} >
+        <Box padding={3} sx={{ backgroundColor: '#201E50' }}>
+              <Box width={'100%'} display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} >
             {footer.map((value) => (
                 <>
                     <List>
-                        <ListItem sx={{ fontWeight: 500 }}>{value.categoria}</ListItem>
-                        <ListItem> <Link href={`${value.item1.link}`}>{value.item1.nome}</Link></ListItem>
-                        <ListItem> <Link href={`${value.item2.link}`}>{value.item2.nome}</Link></ListItem>
-                        <ListItem> <Link href={`${value.item3?.link}`}>{value.item3?.nome}</Link></ListItem>
-                        <ListItem> <Link href={`${value.item4?.link}`}>{value.item4?.nome}</Link></ListItem>
+                        <ListItem  sx={{ fontWeight: 700,fontSize:'1.5em', color:'#FFFF' }}>{value.categoria}</ListItem>
+                        <ListItem> <Link href={`${value.item1.link}`} style={{color:'#525B76', textDecoration:'none'}}>{value.item1.nome}</Link></ListItem>
+                        <ListItem> <Link href={`${value.item2.link}`} style={{color:'#525B76', textDecoration:'none'}}>{value.item2.nome}</Link></ListItem>
+                        <ListItem> <Link href={`${value.item3?.link}`} style={{color:'#525B76', textDecoration:'none'}}>{value.item3?.nome}</Link></ListItem>
+                        <ListItem> <Link href={`${value.item4?.link}`} style={{color:'#525B76', textDecoration:'none'}}>{value.item4?.nome}</Link></ListItem>
                     </List>
                    
                 </>
@@ -82,7 +83,7 @@ export default function Footer() {
             ))}
             
         </Box>
-             <Typography>Tabelas funcionais</Typography>
+            <Typography color={'white'} variant={"h4" }>Tabelas funcionais</Typography>
         </Box>
       
         

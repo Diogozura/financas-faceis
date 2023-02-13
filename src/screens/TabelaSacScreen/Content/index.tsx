@@ -172,14 +172,14 @@ export default function Content() {
                             <Porcentagem setTaxaMesal={setTaxaMesal} />
                         </Inputs>
 
-                        <Typography sx={{display:'flex',cursor: 'pointer', mb:2, color: theme.colors.link}} onClick={()=> setAdd(true)}> <InfoIcon sx={{color: theme.colors.link}} color='info'/>gostaria de adicionar Amortização extra?</Typography>
+                        {!add ? <Typography sx={{display:'flex',cursor: 'pointer', mb:2, color: theme.colors.link}} onClick={()=> setAdd(true) }> <InfoIcon sx={{color: theme.colors.link}} color='info'/>gostaria de adicionar Amortização extra?</Typography>: null} 
                         {add ?  <TextField
                             label='extra'
                             value={values.extra}
                             name="extra"
                             required
                             onChange={handlenChange}
-                            sx={{ marginBottom: 2 }}
+                            sx={{ marginBottom: 2, width: 280 }}
                             id="formatted-numberformat-input"
                             InputProps={{
                                 inputComponent: NumberFormatCustom as any,
