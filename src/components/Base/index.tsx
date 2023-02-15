@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -118,7 +119,7 @@ export default function BaseSite({ children }, props: Props) {
       </Box> */}
                 {/* <Toolbar id="back-to-top-anchor" /> */}
              
-         <Topo />
+         <Topo children={undefined} />
           {children}
    
                    <PremisionCookie/>
