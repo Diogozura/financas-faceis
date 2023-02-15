@@ -15,18 +15,18 @@ const footer = [
         },
         item3: {
             nome: 'Tabelas',
-            link: '/404'
+            link: '/'
         },
 
     }, {
         categoria: 'Mais',
         item1: {
             nome: 'Contato',
-            link: '/404'
+            link: '/contato'
         },
         item2: {
             nome: 'Github',
-            link: '/404'
+            link: 'https://github.com/Diogozura/financas-faceis'
         },
         item3: {
             nome: 'Instagram',
@@ -45,7 +45,11 @@ const footer = [
         },
         item2: {
             nome: 'GitHub',
-            link: '/404'
+            link: 'https://github.com/Diogozura/financas-faceis'
+        },
+        item3: {
+            nome: 'Quem Somos?',
+            link: '/sobre'
         }
     },
     {
@@ -66,7 +70,7 @@ const footer = [
 
 export default function Footer() {
     return (
-        <Box padding={3} sx={{ backgroundColor: '#201E50' }}>
+        <Box padding={3} mt={20} sx={{ backgroundColor: '#201E50' }}>
               <Box width={'100%'} display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} >
             {footer.map((value) => (
                 <>

@@ -1,1 +1,1 @@
-export {default} from '../src/screens/TabelaSacScreen'
+export {default} from '../src/screens/HomeScreen'

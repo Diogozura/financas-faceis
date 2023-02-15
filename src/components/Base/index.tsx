@@ -22,6 +22,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Slide from '@mui/material/Slide';
+import Topo from './Header';
 
 interface Props {
     /**
@@ -51,36 +52,6 @@ function HideOnScroll(props: Props) {
 }
 export default function BaseSite({ children }, props: Props) {
     
-const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
-
-        const { window } = props;
-        const [mobileOpen, setMobileOpen] = React.useState(false);
-
-        const handleDrawerToggle = () => {
-            setMobileOpen((prevState) => !prevState);
-        };
-
-        const drawer = (
-            <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-                <Typography variant="h6" sx={{ my: 2 }}>
-                    MUI
-                </Typography>
-                <Divider />
-                <List>
-                    {navItems.map((item) => (
-                        <ListItem key={item} disablePadding>
-                            <ListItemButton sx={{ textAlign: 'center' }}>
-                                <ListItemText primary={item} />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-            </Box>
-        );
-    
- 
-        const container = window !== undefined ? () => window().document.body : undefined;
     return (
         <>
 
@@ -99,7 +70,7 @@ const navItems = ['Home', 'About', 'Contact'];
           </Typography>
         </Toolbar>'
       </AppBar> */}
-            <HideOnScroll {...props}>
+            {/* <HideOnScroll {...props}>
                  <AppBar component="nav" sx={{bgcolor:'#201E50' , mb:'5em'}}>
         <Toolbar >
           <IconButton
@@ -144,14 +115,12 @@ const navItems = ['Home', 'About', 'Contact'];
         >
           {drawer}
         </Drawer>
-      </Box>
+      </Box> */}
                 {/* <Toolbar id="back-to-top-anchor" /> */}
              
-         
+         <Topo />
           {children}
-                
-                  
-                    
+   
                    <PremisionCookie/>
                 <Footer/>
             {/* <ScrollTop {...props}>
