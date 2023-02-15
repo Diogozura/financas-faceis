@@ -145,7 +145,7 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
           </TableBody>
           
         </Table>
-        {items ? <Typography sx={{ textAlign:'center' , marginTop:'10em', } }>Tabela sem dados</Typography>: null}
+        {/* {items ? <Typography sx={{ textAlign:'center' , marginTop:'10em', } }>Tabela sem dados</Typography>: null} */}
         </Box>
       <div id='baixo'></div>
     </>

@@ -21,8 +21,12 @@ export default function Contato() {
                             </Link>
                         </Typography>
                     </TextoBox>
-                    <CardMedia>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSckjcxQN6Wq-2vaU0O59B01hyBBXhlLwPaGAsqySMWyLkXWxg/viewform?embedded=true" width="100%" height="910px" >Carregando…</iframe>
+                    <CardMedia
+                        component={'iframe'}
+                        
+                        height={'1200px'}
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSckjcxQN6Wq-2vaU0O59B01hyBBXhlLwPaGAsqySMWyLkXWxg/viewform?embedded=true">
+
                     </CardMedia>
 
                 </Box>
