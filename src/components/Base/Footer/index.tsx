@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import Link from "next/link";
-import { theme } from "../../../../styles/theme";
+
 
 const footer = [
     {

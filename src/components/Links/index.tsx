@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { theme } from '../../../pages/_app'
+
 
 export const Navigation = styled.a`
 color: #ffffff;
