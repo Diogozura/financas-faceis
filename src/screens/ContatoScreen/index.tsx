@@ -2,6 +2,7 @@ import BaseSite from "../../components/Base";
 import { Box, Typography } from "@mui/material";
 import { CardMedia } from '@mui/material';
 import Link from "next/link";
+import TextoBox from "../../components/TextoBox";
 export default function Contato() {
     return (
         <>
@@ -10,15 +11,7 @@ export default function Contato() {
                     mt: 10,
 
                 }}>
-                    <Box sx={{
-                        textAlign: 'center',
-                        width: '90%',
-                        padding:'30px',
-                        m: 'auto',
-                        border: '1px solid #000000',
-                        borderRadius: ' 10px'
-
-                    }}>
+                    <TextoBox>
                         <Typography variant="h1" fontSize={'4em'} fontWeight={500}>
                             Contato
                         </Typography>
@@ -27,7 +20,7 @@ export default function Contato() {
                                 2ess.email.com
                             </Link>
                         </Typography>
-                    </Box>
+                    </TextoBox>
                     <CardMedia>
                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSckjcxQN6Wq-2vaU0O59B01hyBBXhlLwPaGAsqySMWyLkXWxg/viewform?embedded=true" width="100%" height="910px" >Carregando…</iframe>
                     </CardMedia>

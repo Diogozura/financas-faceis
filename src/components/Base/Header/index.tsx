@@ -10,13 +10,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from 'next/link';
-import Image from 'next/image';
 import Slide from '@mui/material/Slide';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { LogoResponse, Navigation, NavigationMenu } from '../../Links';
-import { Nav } from './Nav';
-import Router, { useRouter } from 'next/router';
+import {  Navigation } from '../../Links';
+
+import  { useRouter } from 'next/router';
 import { Button } from '@mui/material';
 
 
@@ -138,11 +136,11 @@ export default function Topo(props: Props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 {navItems.map((item) => (
-                    <Button key={item.id} sx={{ color: '#fff' }}>
-                    <Navigation href={item.path} style={{color:'white', margin:2}} >
+                   
+                    <Navigation  key={item.id} href={item.path} style={{color:'white', margin:2}} >
                 {item.label}
               </Navigation>
-              </Button>
+              
               
             ))}
           </Box>

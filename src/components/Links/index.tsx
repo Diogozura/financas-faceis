@@ -6,7 +6,6 @@ color: #ffffff;
 padding: 10px;
 text-decoration: none;
 /* font-size: x-large; */
-font-family: "Museo700";
 cursor: pointer;
 @media only screen and (max-width: 550px){
     margin: 5px;
