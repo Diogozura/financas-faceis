@@ -14,7 +14,7 @@ import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
 import { Botao } from './style';
 import moment from 'moment';
-import { Looping } from './functionLooping';
+import { Looping } from './calculo_sac';
 import { theme } from '../../../../styles/theme';
 
 
