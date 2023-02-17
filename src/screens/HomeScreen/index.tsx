@@ -10,7 +10,8 @@ export default function homeScreen() {
                 <Box sx={{
                     backgroundImage: 'linear-gradient(#05FC00, #1E74D9)',
                     mt: '3em',
-                    padding:'3em'
+                    padding: '3em',
+                    height: '100vh'
                 }}>
                     <Typography
                         variant="h1"
@@ -24,7 +25,7 @@ export default function homeScreen() {
                 <Box sx={{
                     backgroundImage: 'linear-gradient(#1E74D9,#F53636)',
                     padding: '4em',
-                   
+                    height: '100vh'
                 }}>
                     <Typography variant="h3" sx={{fontSize:'2em',  textAlign:'center',}}>
                         Utilize a  <Link href={'/tabelasac'} style={{color:'white'} }>
