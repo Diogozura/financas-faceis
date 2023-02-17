@@ -8,7 +8,7 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
   let i = 0;
   let saldo_devedor_atual = saldoDevedor;
   let array = [];
-  const newDate = moment( array[array.length - 1].data, 'MM/YYYY').add(1, 'months');
+
   while (Amotização + extra < saldo_devedor_atual) {
     i++;
     if (i === 1) {
@@ -30,6 +30,7 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
       array.push(obj);
     } else {
       const devedor_anterior = array[array.length - 1].saldoDevedor;
+      const newDate = moment( array[array.length - 1].data, 'MM/YYYY').add(1, 'months');
       const temp = {
         N: 0,
         juros: 0,
@@ -53,7 +54,6 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
       const temp = {
         N: i + 1,
         juros: 0,
-        data: newDate.format('MM/YYYY'),
         parcelas: 0,
         amortizacao: Amotização - saldo_devedor_atual,
         extra: 0,
@@ -67,7 +67,6 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
         N: i + 1,
         juros: 0,
         parcelas: 0,
-        data: newDate.format('MM/YYYY'),
         amortizacao: Amotização,
         extra: Amotização + extra - saldo_devedor_atual,
         saldoDevedor: 0
