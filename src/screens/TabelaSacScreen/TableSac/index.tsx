@@ -62,7 +62,7 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
   
     Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra)
   
-    
+    console.log('fui clicado ainnn')
    
   }
 

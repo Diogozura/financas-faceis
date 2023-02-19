@@ -4,18 +4,10 @@ import styled from 'styled-components'
 import { NumberFormatCustom } from '../../../components/number/number'
 import FormControl from '@mui/material/FormControl'
 import { theme } from '../../../../styles/theme'
-import YearToMonthForm from '../../../components/mesAno'
-import Porcentagens from './Porcentagem'
 import CustomizedTables from '../TableSac'
-import { Explica } from '../../../../styles'
 import { Moment } from 'moment'
 import moment from 'moment'
 import 'moment/locale/pt-br';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'
-import { DatePicker } from '@mui/x-date-pickers'
-import YearAndMonthConverter from './AnosToMeses'
 import dynamic from 'next/dynamic'
 import InfoIcon from '@mui/icons-material/Info';
 
