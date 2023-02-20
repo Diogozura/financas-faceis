@@ -40,31 +40,23 @@ if(unit == '%ano'){
     <aside>
 
   
-      <FormControl sx={{ display: 'flex', marginBottom: 5, flexDirection: 'row' }} >
-   
+      <FormControl sx={{ display: 'flex', marginBottom: 5, flexDirection: 'column' }} >
+    <Typography mb={1}>% Ano</Typography>
       <TextField
-        label={unit}
-        // type="number"
+        label={'% Ano'}
+        type="number"
         value={value}
-        fullWidth
-        sx={{ width: 180 }}
+          fullWidth
+          placeholder='% Ano'
+          InputProps={{ inputProps: { min: 0, max: 100 } }}
+        sx={{ width: 280 }}
         id="formatted-numberformat-input"
         variant="outlined"
         onChange={handleValueChange}
 
       />
 
-<Select
-          labelId="simple-select-label"
-          id="demo-simple-select"
-          value={unit}
-          sx={{width:90}}
-          onChange={handleUnitChange}
-        >
 
-          <MenuItem value="%ano">Ano</MenuItem>
-          <MenuItem value="%mês">Mês</MenuItem>
-        </Select> 
 
       </FormControl>
       <p>{ }</p>

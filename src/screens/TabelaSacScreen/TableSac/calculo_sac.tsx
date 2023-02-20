@@ -10,7 +10,7 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
   let saldo_devedor_atual = saldoDevedor;
   let array = [];
 
-  while (Amotização + extra < saldo_devedor_atual) {
+  while ((Amotização + extra) < saldo_devedor_atual) {
     i++;
     if (i === 1) {
       const obj = {
@@ -42,16 +42,21 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
         saldoDevedor: 0
       };
       temp.N = i;
-      temp.juros = Math.round(calculo_juros(devedor_anterior, taxaMesal));
+      temp.juros = calculo_juros(devedor_anterior, taxaMesal);
       temp.amortizacao = Amotização;
-      temp.parcelas = temp.juros + temp.amortizacao + temp.extra;
-      temp.saldoDevedor = Math.round(devedor_anterior - Amotização - temp.extra);
+      var parcelas = temp.juros + temp.amortizacao + temp.extra
+      console.log(typeof(parcelas))
+      //parcelas = parcelas.toFixed(2);
+      temp.parcelas = parseFloat(parcelas);
+      temp.saldoDevedor = devedor_anterior - temp.amortizacao - temp.extra;
       array.push(temp);
       saldo_devedor_atual = temp.saldoDevedor;
     }
   }
-  if (saldo_devedor_atual > 0) {
-    if (saldo_devedor_atual < Amotização) {
+   if (saldo_devedor_atual > 0) {
+    console.log('entramos aqui > 0')
+     if (saldo_devedor_atual < Amotização) {
+      console.log('entramos aqui < Amotização')
       const temp = {
         N: i + 1,
         juros: 0,
@@ -63,7 +68,8 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
       temp.juros = Math.round(calculo_juros(saldo_devedor_atual, taxaMesal));
       temp.parcelas = temp.juros + temp.amortizacao;
       array.push(temp);
-    } else {
+     } else {
+      console.log('entramos aqui > Amotização')
       const temp = {
         N: i + 1,
         juros: 0,
@@ -78,6 +84,6 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
     }
    }
    setItems(array)
-  console.log(array);
+  // console.log(array);
   return array;
 }

@@ -145,20 +145,7 @@ export default function Content() {
                             ))}
                         </Inputs>
                       
-                        {/* <TextField
-                            label='extra'
-                            value={values.extra}
-                            name="extra"
-                            required
-                            onChange={handlenChange}
-                            sx={{ marginBottom: 2 }}
-                            id="formatted-numberformat-input"
-                            InputProps={{
-                                inputComponent: NumberFormatCustom as any,
-                            }}
-                            variant="outlined"
-                        /> */}
-                        {/* <YearToMonthForm setMeses={setMeses} /> */}
+    
                         <Inputs>
                             <AnoMes setMeses={setMeses} />
                             <Porcentagem setTaxaMesal={setTaxaMesal} />
