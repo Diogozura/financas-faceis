@@ -62,7 +62,7 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
   
     Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra)
   
-    console.log('fui clicado ainnn')
+    
    
   }
 
@@ -119,17 +119,15 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
               <StyledTableCell align="left"> {num.parcelas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{ num.juros.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{num.amortizacao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
-              <StyledTableCell align="left" >
-                <Button onClick={() => Click(num.N, 200)} >{num.extra}</Button>
-                {/* {num.extra} */}
-              </StyledTableCell>
+        
+              <StyledTableCell align="left">{num.extra }</StyledTableCell>
               <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
             </StyledTableRow>
           
           ))}
             
           { items.slice(-5).map((num, index) => (
-            <StyledTableRow key={num}>
+            <StyledTableRow key={num.N}>
               <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
               <StyledTableCell align="left"> {num.data}</StyledTableCell>
               <StyledTableCell align="left">{num.parcelas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>

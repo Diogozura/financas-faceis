@@ -62,7 +62,7 @@ export default function Content() {
         moment()
     );
 
-    console.log('taxa mensal', taxaMesal)
+    // console.log('taxa mensal', taxaMesal)
     const [values, setValues] = React.useState<Item>({
         // Valor inicial a pagar
         valorInicial: 0,

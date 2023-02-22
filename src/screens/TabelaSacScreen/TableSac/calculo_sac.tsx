@@ -1,16 +1,46 @@
 import moment from "moment";
 function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
-  console.log('taxaMesal', taxaMesal)
+  // console.log('taxaMesal', taxaMesal)
     const juros = saldoDevedor * taxaMesal;
     return juros;
   }
-
+function arredondar(valor, n) {
+  var resultado = valor
+  if (typeof (valor) == 'string')
+  {
+    resultado = parseInt(valor)
+    //resultado = resultado.toFixed(n)
+  }
+  if (typeof (resultado) == 'number')
+  {
+    resultado = resultado.toFixed(n)
+    }
+  
+  
+  return parseInt(valor)
+}
+function criaLinha(N,data,amortizacao,extra,saldo_devedor,taxa_mesal)
+{
+  var juros_pago = calculo_juros(saldo_devedor, taxa_mesal) 
+  const obj = {
+    N: N,
+    juros: juros_pago,
+    parcelas: juros_pago + amortizacao + extra,
+    data: data.format("MM/YYYY"),
+    extra: extra,
+    amortizacao: amortizacao,
+    saldoDevedor: saldo_devedor - (amortizacao + extra) 
+  }
+  return obj
+}
  export function Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra) {
   let i = 0;
   let saldo_devedor_atual = saldoDevedor;
-  let array = [];
+   let array = [];
 
-  while ((Amotização + extra) < saldo_devedor_atual) {
+   while ((Amotização + parseInt(extra)) < saldo_devedor_atual) {
+    
+
     i++;
     if (i === 1) {
       const obj = {
@@ -29,7 +59,9 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
       obj.extra = 0;
       obj.saldoDevedor = saldoDevedor;
       array.push(obj);
+      //array.push(criaLinha);
     } else {
+      // console.log('diferente' )
       const devedor_anterior = array[array.length - 1].saldoDevedor;
       const newDate = moment( array[array.length - 1].data, 'MM/YYYY').add(1, 'months');
       const temp = {
@@ -42,24 +74,30 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
         saldoDevedor: 0
       };
       temp.N = i;
-      temp.juros = calculo_juros(devedor_anterior, taxaMesal);
+      temp.juros = arredondar(calculo_juros(devedor_anterior, taxaMesal),2);
       temp.amortizacao = Amotização;
-      var parcelas = temp.juros + temp.amortizacao + temp.extra
-      console.log(typeof(parcelas))
+      var parcelas = temp.juros + temp.amortizacao + temp.extra;
+      
       //parcelas = parcelas.toFixed(2);
-      temp.parcelas = parseFloat(parcelas);
+      temp.parcelas = arredondar(parcelas, 2);
       temp.saldoDevedor = devedor_anterior - temp.amortizacao - temp.extra;
+     
+      saldo_devedor_atual = arredondar(temp.saldoDevedor, 2);
+     
       array.push(temp);
-      saldo_devedor_atual = temp.saldoDevedor;
+     
     }
-  }
-   if (saldo_devedor_atual > 0) {
-    console.log('entramos aqui > 0')
-     if (saldo_devedor_atual < Amotização) {
-      console.log('entramos aqui < Amotização')
+   }
+  //  console.log('temp.saldoDevedor', saldo_devedor_atual )
+   if (parseInt(saldo_devedor_atual) > 0) {
+   
+     if ( Amotização > saldo_devedor_atual) {
+     
+       const newDate = moment( array[array.length - 1].data, 'MM/YYYY').add(1, 'months');
       const temp = {
         N: i + 1,
         juros: 0,
+        data: newDate.format('MM/YYYY'),
         parcelas: 0,
         amortizacao: saldo_devedor_atual,
         extra: 0,
@@ -69,21 +107,27 @@ function calculo_juros(saldoDevedor: number, taxaMesal: number): number {
       temp.parcelas = temp.juros + temp.amortizacao;
       array.push(temp);
      } else {
-      console.log('entramos aqui > Amotização')
+     
+       const newDate = moment( array[array.length - 1].data, 'MM/YYYY').add(1, 'months');
       const temp = {
         N: i + 1,
         juros: 0,
+        data: newDate.format('MM/YYYY'),
         parcelas: 0,
         amortizacao: Amotização,
-        extra: Amotização + extra - saldo_devedor_atual,
-        saldoDevedor: 0
+        extra: extra  ,
+        saldoDevedor: 0,
       };
       temp.juros = Math.round(calculo_juros(saldo_devedor_atual, taxaMesal));
-      temp.parcelas = temp.juros + temp.amortizacao + temp.extra;
+      var parcelas = temp.juros + temp.amortizacao + temp.extra;
+      
+      //parcelas = parcelas.toFixed(2);
+      temp.parcelas = arredondar(parcelas, 2);
       array.push(temp);
     }
    }
+
    setItems(array)
-  // console.log(array);
+ 
   return array;
 }
