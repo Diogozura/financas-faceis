@@ -12,9 +12,7 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
-import { Botao } from './style';
-import moment from 'moment';
-import { Looping } from './calculo_sac';
+import { Looping } from './Calculo_sac';
 import { theme } from '../../../../styles/theme';
 
 
@@ -71,10 +69,10 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
 
   return (
     <>
-      <Botao>
+      <Box display={'flex'} justifyContent={'center'} mb={2}>
         <Button variant="contained" sx={{ textAlign: 'center', bgcolor: theme.colors.link }}  disabled={!valorInicial || !error || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Gerar tabela </Button>
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
-    </Botao>
+      </Box>
      
       <Box sx={{ overflowX: 'auto' }} height={700}>
         

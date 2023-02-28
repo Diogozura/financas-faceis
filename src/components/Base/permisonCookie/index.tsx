@@ -81,8 +81,6 @@ export default function PremisionCookie(ctx) {
           action={action}
         >
           <Alert severity="warning">2esestechnology.com.br pede seu consentimento para usar seus dados pessoais para:
-
-  
             Seus dados pessoais serão processados e as informações do seu dispositivo (cookies, identificadores exclusivos e outros dados do dispositivo) podem ser armazenadas, acessadas e compartilhadas com fornecedores terceirizados ou usadas especificamente por este site ou aplicativo.<Button onClick={handleClick}>Aceitar</Button><Button color='error' onClick={handleClose}>Não aceitar</Button></Alert>
         </Snackbar>
       </div>
