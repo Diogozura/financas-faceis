@@ -1,11 +1,11 @@
 /* eslint-disable react/no-children-prop */
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Head from 'next/head';
-import Footer from './Footer';
 import PremisionCookie from './permisonCookie';
 import * as React from 'react';
 import Slide from '@mui/material/Slide';
 import Topo from './Header';
+import dynamic from 'next/dynamic';
 
 interface Props {
   /**
@@ -15,6 +15,11 @@ interface Props {
   window?: () => Window;
   children: React.ReactElement;
 }
+const Footer = dynamic(
+  () => import('./Footer'),
+  { loading: () => <p>Loading ...</p>, ssr: true }
+)
+
 
 
 export default function BaseSite({ children }, props: Props) {

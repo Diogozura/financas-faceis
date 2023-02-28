@@ -10,6 +10,7 @@ import moment from 'moment'
 import 'moment/locale/pt-br';
 import dynamic from 'next/dynamic'
 import InfoIcon from '@mui/icons-material/Info';
+import { v4 as uuidv4 } from 'uuid';
 
 const Porcentagem = dynamic(
     () => import('./Porcentagem'),
@@ -122,7 +123,7 @@ export default function Content() {
                         color='info'
                         variant="standard"  >
                         {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
-                        <Inputs >
+                        <Inputs key={uuidv4} >
                             {valores.map((item) => (
                                 < >
 
@@ -131,7 +132,7 @@ export default function Content() {
                                         value={item.value}
                                         name={item.name}
                                         required
-
+                                        key={uuidv4}
                                         onChange=
                                         {handlenChange}
                                         sx={{ marginBottom: 2, width: 280 }}
@@ -146,9 +147,9 @@ export default function Content() {
                         </Inputs>
 
 
-                        <Inputs>
-                            <AnoMes setMeses={setMeses} />
-                            <Porcentagem setTaxaMesal={setTaxaMesal} />
+                        <Inputs key={uuidv4}>
+                            <AnoMes key={uuidv4} setMeses={setMeses} />
+                            <Porcentagem key={uuidv4} setTaxaMesal={setTaxaMesal} />
                         </Inputs>
 
                         {!add ? <Typography sx={{ display: 'flex', cursor: 'pointer', mb: 2, color: theme.colors.link }} onClick={() => setAdd(true)}> <InfoIcon sx={{ color: theme.colors.link }} color='info' />gostaria de adicionar Amortização extra?</Typography> : null}

@@ -21,7 +21,6 @@ function arredondar(valor, n) {
 }
 
 
-
 function criaLinha(N,data,amortizacao,extra,saldo_devedor,taxa_mesal)
 {
   var juros_pago = calculo_juros(saldo_devedor, taxa_mesal) 
