@@ -90,7 +90,7 @@ export default function Footer() {
             <Box width={'100%'} display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} >
                 {footer.map((value) => (
                     <>
-                        <List>
+                        <List key={value.categoria}>
                             <ListItem sx={{ fontWeight: 700, fontSize: '1.5em', color: '#FFFF' }}>{value.categoria}</ListItem>
                             <ListItem>
                                 <Link href={`${value.item1.link}`} legacyBehavior>
@@ -108,7 +108,7 @@ export default function Footer() {
                                 </Link>
                             </ListItem>
                             <ListItem>
-                                <Link href={`${value.item4?.link}`} legacyBehavior >
+                                <Link href={`${value.item4?.link}`} prefetch legacyBehavior >
                                 <Navigation> {value.item4?.nome}</Navigation>
                                 </Link>
                             </ListItem>

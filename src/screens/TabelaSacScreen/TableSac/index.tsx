@@ -56,47 +56,29 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
 
 
   const [items, setItems] = React.useState([]);
+
  
+
   
   function handleClick() {
-  
     Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra)
-  
-    
    
   }
 
-  
-  function Click(id, newAmor) {
-    const newArray = [...items];
-
-    const itemToUpdate = newArray.find(item => item.N === id);
-    itemToUpdate.amortizacao = newAmor;
-
-    // const itemsToUpdate = newArray.slice(id);
-    // const updatedItems = itemsToUpdate.map(item => ({...item, extra: newAmor}));
-    // newArray.splice(id, updatedItems.length, ...updatedItems);
- 
-   ReCalc( newAmor)
-  }
 
 
-  
-  function ReCalc( newAmor) {
-    Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, newAmor)
-  }
 
 
   return (
     <>
       <Botao>
-        <Button variant="contained" sx={{ textAlign: 'center', bgcolor: theme.colors.link }}  disabled={!valorInicial || !error || !valorEntrada || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Gerar tabela </Button>
+        <Button variant="contained" sx={{ textAlign: 'center', bgcolor: theme.colors.link }}  disabled={!valorInicial || !error || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Gerar tabela </Button>
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
     </Botao>
      
       <Box sx={{ overflowX: 'auto' }} height={700}>
         
-     
+      
       <Table sx={{minWidth: 350 }}  aria-label="customized   table">
         <TableHead >
             <TableRow sx={{bgcolor:'#201E50'}}>
@@ -113,14 +95,13 @@ export default function SimpleTable({ valorInicial, extra ,  error, data, valorE
           
           {items.slice(0, 5).map((num, index) => (
             <StyledTableRow key={num.N} >
-              
               <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
               <StyledTableCell align="left"> {num.data}</StyledTableCell>
               <StyledTableCell align="left"> {num.parcelas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{ num.juros.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
               <StyledTableCell align="left">{num.amortizacao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
         
-              <StyledTableCell align="left">{num.extra }</StyledTableCell>
+              <StyledTableCell align="left" > {num.extra }</StyledTableCell>
               <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</StyledTableCell>
             </StyledTableRow>
           

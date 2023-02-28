@@ -41,7 +41,6 @@ if(unit == '%ano'){
 
   
       <FormControl sx={{ display: 'flex', marginBottom: 5, flexDirection: 'column' }} >
-    <Typography mb={1}>% Ano</Typography>
       <TextField
         label={'% Ano'}
         type="number"

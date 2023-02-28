@@ -57,7 +57,7 @@ export default function Content() {
     const [Meses, setMeses] = React.useState('');
     const [taxaMesal, setTaxaMesal] = React.useState('')
     const [error, setError] = React.useState(true)
-    const [add ,setAdd] = React.useState(false)
+    const [add, setAdd] = React.useState(false)
     const [data, setData] = React.useState<Moment | null>(
         moment()
     );
@@ -144,27 +144,31 @@ export default function Content() {
                                 </>
                             ))}
                         </Inputs>
-                      
-    
+
+
                         <Inputs>
                             <AnoMes setMeses={setMeses} />
                             <Porcentagem setTaxaMesal={setTaxaMesal} />
                         </Inputs>
 
-                        {!add ? <Typography sx={{display:'flex',cursor: 'pointer', mb:2, color: theme.colors.link}} onClick={()=> setAdd(true) }> <InfoIcon sx={{color: theme.colors.link}} color='info'/>gostaria de adicionar Amortização extra?</Typography>: null} 
-                        {add ?  <TextField
-                            label='extra'
-                            value={values.extra}
-                            name="extra"
-                            required
-                            onChange={handlenChange}
-                            sx={{ marginBottom: 2, width: 280 }}
-                            id="formatted-numberformat-input"
-                            InputProps={{
-                                inputComponent: NumberFormatCustom as any,
-                            }}
-                            variant="outlined"
-                        /> : null}
+                        {!add ? <Typography sx={{ display: 'flex', cursor: 'pointer', mb: 2, color: theme.colors.link }} onClick={() => setAdd(true)}> <InfoIcon sx={{ color: theme.colors.link }} color='info' />gostaria de adicionar Amortização extra?</Typography> : null}
+                        {add ? <>
+                            <Typography sx={{ display: 'flex', cursor: 'pointer', mb: 2, color: theme.colors.Vermelho }} onClick={() =>  setAdd(false)}> <InfoIcon sx={{ color: theme.colors.link }} color='info' />não  de adicionar Amortização extra?</Typography>
+                            <TextField
+                                label='extra'
+                                value={values.extra}
+                                name="extra"
+                                required
+                                onChange={handlenChange}
+                                sx={{ marginBottom: 2, width: 280 }}
+                                id="formatted-numberformat-input"
+                                InputProps={{
+                                    inputComponent: NumberFormatCustom as any,
+                                }}
+                                variant="outlined"
+                            />
+                        </>
+                            : null}
                         {/* 
                         <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale={'pt-br'} >
                             <DatePicker

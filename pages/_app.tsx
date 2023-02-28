@@ -12,12 +12,12 @@ export default function App({ Component, pageProps }: AppProps) {
 
     <>
       <Head>
-        <link rel="canonical" href="https://www.easyimobiliario.com.br" />
+        <link rel="canonical" href="https://www.2esestechnology.com.br" />
         <link rel="icon" href="/favicon.ico" />
         
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-
+        
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLXWF6S89G" />
         <script
           dangerouslySetInnerHTML={{

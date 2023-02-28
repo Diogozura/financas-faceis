@@ -19,6 +19,9 @@ function arredondar(valor, n) {
   
   return parseInt(valor)
 }
+
+
+
 function criaLinha(N,data,amortizacao,extra,saldo_devedor,taxa_mesal)
 {
   var juros_pago = calculo_juros(saldo_devedor, taxa_mesal) 
@@ -33,6 +36,9 @@ function criaLinha(N,data,amortizacao,extra,saldo_devedor,taxa_mesal)
   }
   return obj
 }
+
+
+
  export function Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra) {
   let i = 0;
   let saldo_devedor_atual = saldoDevedor;
@@ -41,7 +47,8 @@ function criaLinha(N,data,amortizacao,extra,saldo_devedor,taxa_mesal)
    while ((Amotização + parseInt(extra)) < saldo_devedor_atual) {
     
 
-    i++;
+     i++;
+     
     if (i === 1) {
       const obj = {
         N: 0,
@@ -131,3 +138,4 @@ function criaLinha(N,data,amortizacao,extra,saldo_devedor,taxa_mesal)
  
   return array;
 }
+
