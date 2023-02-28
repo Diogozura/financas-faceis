@@ -3,7 +3,7 @@ function calculo_juros(saldoDevedor, taxaMesal):number {
     return juros;
   }
 
- function looping(saldo_devedor, taxa_mensal, n_parcelas, extra) {
+ export function looping(saldo_devedor, taxa_mensal, n_parcelas, extra) {
   let i = 0;
   let saldo_devedor_atual = saldo_devedor;
   let array = [];

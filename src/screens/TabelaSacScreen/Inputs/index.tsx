@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { NumberFormatCustom } from '../../../components/number/number'
 import FormControl from '@mui/material/FormControl'
 import { theme } from '../../../../styles/theme'
-import CustomizedTables from '../TableSac'
+
 import { Moment } from 'moment'
 import moment from 'moment'
 import 'moment/locale/pt-br';
@@ -18,6 +18,10 @@ const Porcentagem = dynamic(
 )
 const AnoMes = dynamic(
     () => import('./AnosToMeses'),
+    { loading: () => <p>Loading ...</p>, ssr: false }
+)
+const Table = dynamic(
+    () => import('../TableSac'),
     { loading: () => <p>Loading ...</p>, ssr: false }
 )
 
@@ -123,7 +127,7 @@ export default function Content() {
                         color='info'
                         variant="standard"  >
                         {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
-                        <Inputs key={uuidv4} >
+                        <Inputs  >
                             {valores.map((item) => (
                                 < >
 
@@ -132,9 +136,7 @@ export default function Content() {
                                         value={item.value}
                                         name={item.name}
                                         required
-                                        key={uuidv4}
-                                        onChange=
-                                        {handlenChange}
+                                        onChange={handlenChange}
                                         sx={{ marginBottom: 2, width: 280 }}
                                         id="formatted-numberformat-input"
                                         InputProps={{
@@ -147,9 +149,9 @@ export default function Content() {
                         </Inputs>
 
 
-                        <Inputs key={uuidv4}>
-                            <AnoMes key={uuidv4} setMeses={setMeses} />
-                            <Porcentagem key={uuidv4} setTaxaMesal={setTaxaMesal} />
+                        <Inputs>
+                            <AnoMes  setMeses={setMeses} />
+                            <Porcentagem  setTaxaMesal={setTaxaMesal} />
                         </Inputs>
 
                         {!add ? <Typography sx={{ display: 'flex', cursor: 'pointer', mb: 2, color: theme.colors.link }} onClick={() => setAdd(true)}> <InfoIcon sx={{ color: theme.colors.link }} color='info' />gostaria de adicionar Amortização extra?</Typography> : null}
@@ -191,7 +193,7 @@ export default function Content() {
 
             </Box>
 
-            <CustomizedTables valorInicial={valorInicial} error={error} data={data} extra={extra} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
+            <Table valorInicial={valorInicial} error={error} data={data} extra={extra} valorEntrada={valorEntrada} taxaMesal={taxaMesal} parcelaMes={parcelaMes} />
 
         </>
     )

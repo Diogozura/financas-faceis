@@ -90,24 +90,24 @@ export default function Footer() {
             <Box width={'100%'} display={'flex'} flexWrap={'wrap'} justifyContent={'space-around'} >
                 {footer.map((value) => (
                     <>
-                        <List key={uuidv4}>
+                        <List key={uuidv4()}>
                             <ListItem sx={{ fontWeight: 700, fontSize: '1.5em', color: '#FFFF' }}>{value.categoria}</ListItem>
-                            <ListItem key={uuidv4}>
+                            <ListItem key={uuidv4()}>
                                 <Link href={`${value.item1.link}`} legacyBehavior>
                                     <Navigation> {value.item1.nome}</Navigation>
                                 </Link>
                             </ListItem>
-                            <ListItem key={uuidv4}> 
+                            <ListItem key={uuidv4()}> 
                                 <Link href={`${value.item2.link}`} legacyBehavior>
                                 <Navigation> {value.item2.nome}</Navigation>
                                 </Link>
                             </ListItem>
-                            <ListItem key={uuidv4}>
+                            <ListItem key={uuidv4()}>
                                 <Link href={`${value.item3?.link}`} legacyBehavior >
                                 <Navigation> {value.item3?.nome}</Navigation>
                                 </Link>
                             </ListItem>
-                            <ListItem key={uuidv4}>
+                            <ListItem key={uuidv4()}>
                                 <Link href={`${value.item4?.link}`}  legacyBehavior >
                                 <Navigation> {value.item4?.nome}</Navigation>
                                 </Link>
