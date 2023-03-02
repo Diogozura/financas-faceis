@@ -45,7 +45,7 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
 
 
   const [items, setItems] = React.useState([]);
-
+  const[ fullTable ,setFullTable] = React.useState(false)
 
 
 
@@ -65,7 +65,7 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
       </Box>
 
-      <Box sx={{ overflowX: 'auto', width: '100%', m: 0, padding: 0 }} height={700}>
+      <Box sx={{ overflowX: 'auto', width: '100%', m: 0, padding: 0 }} height={500}>
 
         <Table sx={{ minWidth: 300 }} stickyHeader aria-label="customized   table">
           <TableHead >
@@ -86,7 +86,8 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.slice(0, 5).map((num, index) => (
+
+            {fullTable ? items.slice(0, 5).map((num, index) => (
               <StyledTableRow key={num.N} >
                 <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
                 <StyledTableCell align="left"> {num.data}</StyledTableCell>
@@ -103,9 +104,10 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
                 <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</StyledTableCell>
               </StyledTableRow>
 
-            ))}
-
-            {items.slice(-5).map((num, index) => (
+            )): null}
+           
+            {fullTable ? <Button onClick={() => setFullTable(false)}> full Tabela</Button> : null}
+            {!fullTable ? items.map((num, index) => (
               <StyledTableRow key={num.N}>
                 <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
                 <StyledTableCell align="left"> {num.data}</StyledTableCell>
@@ -122,13 +124,33 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
                 <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</StyledTableCell>
               </StyledTableRow>
 
-            ))}
+            )) : null}
+            {fullTable ? items.slice(-5).map((num, index) => (
+              <StyledTableRow key={num.N}>
+                <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
+                <StyledTableCell align="left"> {num.data}</StyledTableCell>
+                <StyledTableCell align="left">{num.parcelas.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</StyledTableCell>
+                <Hidden mdDown>
+                  <StyledTableCell align="left">{num.juros.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</StyledTableCell>
+                </Hidden>
+                <Hidden mdDown>
+                  <StyledTableCell align="left">{num.amortizacao.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</StyledTableCell>
+                </Hidden>
+                <Hidden mdDown>
+                  <StyledTableCell align="left" > {num.extra}</StyledTableCell>
+                </Hidden>
+                <StyledTableCell align="left"> {num.saldoDevedor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</StyledTableCell>
+              </StyledTableRow>
+
+            )): null}
 
           </TableBody>
 
         </Table>
         {/* {items ? <Typography sx={{ textAlign:'center' , marginTop:'10em', } }>Tabela sem dados</Typography>: null} */}
+        
       </Box>
+      {fullTable ? null: <Button onClick={()=> setFullTable(true)}>menos Tabela</Button>}
       <div id='baixo'></div>
 
     </>
