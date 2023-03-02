@@ -90,7 +90,7 @@ export default function BackToTop(props: Props) {
                             textAlign={'center'}
                             marginBottom={2}
                             marginTop={5}
-                            sx={{ textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', textDecorationLine: 'underline' }}
+                            sx={{ textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', }}
                         >
                             Tabela SAC </Typography>
                         

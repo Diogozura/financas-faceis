@@ -40,7 +40,7 @@ if(unit == '%ano'){
     <aside>
 
   
-      <FormControl sx={{ display: 'flex', marginBottom: 5, flexDirection: 'column' }} >
+      <FormControl sx={{ display: 'flex', marginBottom: 1, flexDirection: 'column' }} >
         <TextField
         label={'% Ano'}
         type="number"
@@ -54,11 +54,7 @@ if(unit == '%ano'){
         onChange={handleValueChange}
 
       />
-
-
-
       </FormControl>
-      <p>{ }</p>
     </aside>
   );
 };

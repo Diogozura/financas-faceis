@@ -35,7 +35,7 @@ export default function YearAndMonthConverter({ setMeses }: any) {
 
   return (
     <aside >
-      <FormControl sx={{ display: 'flex',marginBottom:5,  maxWidth: 400, flexDirection: 'row' }} >
+      <FormControl sx={{ display: 'flex',marginBottom:2,  maxWidth: 400, flexDirection: 'row' }} >
         <TextField
           label={unit}
           type="number"
@@ -52,7 +52,7 @@ export default function YearAndMonthConverter({ setMeses }: any) {
           labelId="simple-select-label"
           id="demo-simple-select"
           value={unit}
-          sx={{width:90}}
+          sx={{width:100}}
           onChange={handleUnitChange}
         >
 

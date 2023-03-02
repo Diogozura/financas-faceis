@@ -1,11 +1,12 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { theme } from '../../../../styles/theme';
 
 
 export default function Textos({ children }) {
     return (
         <>  <Box margin={'auto'} marginBottom={5} sx={{ bgcolor: '#F4F4F4',  maxWidth: 700, }} borderRadius="10px" padding={3}>
-            <Typography variant='h4' fontSize={'1em'} fontWeight={400}>
+            <Typography variant='h4' fontSize={'1em'} color={theme.colors.font2} fontWeight={400}>
                 O sistema SAC (Sistema de Amortização Constante) é uma forma comum de financiamento de imóveis no Brasil. Ele é semelhante ao sistema Price, mas as parcelas incluem tanto juros quanto amortização.
             </Typography>
         </Box>

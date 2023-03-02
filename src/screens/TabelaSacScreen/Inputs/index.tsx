@@ -28,7 +28,7 @@ const Table = dynamic(
 
 
 const Box = styled.section`
-width: 900px;
+width: 700px;
 margin: auto;
 margin-bottom: 2em;
 flex-wrap: wrap;
@@ -42,7 +42,7 @@ const Inputs = styled.aside`
 align-items: center;
 display: flex;
 flex-wrap: wrap;
- width: 800px;
+ width: 700px;
  justify-content: space-between;
  @media only screen and (max-width: 840px) {
     width: 80%;
@@ -118,15 +118,12 @@ export default function Content() {
 
     return (
         <>
-
-            {/* <MyComponent/> */}
             <Box>
                 <form >
-
-                    <FormControl
+                  <FormControl
                         color='info'
                         variant="standard"  >
-                        {/* <Explica>*Informe Anos a serem pagos ou a quantidade de meses</Explica> */}
+                        
                         <Inputs  >
                             {valores.map((item) => (
                                 < >
@@ -147,12 +144,10 @@ export default function Content() {
                                 </>
                             ))}
                         </Inputs>
-
-
-                        <Inputs>
+                        <Box  >
                             <AnoMes  setMeses={setMeses} />
                             <Porcentagem  setTaxaMesal={setTaxaMesal} />
-                        </Inputs>
+                        </Box>
 
                         {!add ? <Typography sx={{ display: 'flex', cursor: 'pointer', mb: 2, color: theme.colors.link }} onClick={() => setAdd(true)}> <InfoIcon sx={{ color: theme.colors.link }} color='info' />gostaria de adicionar Amortização extra?</Typography> : null}
                         {add ? <>

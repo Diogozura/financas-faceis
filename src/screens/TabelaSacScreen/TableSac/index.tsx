@@ -14,12 +14,14 @@ import Link from 'next/link';
 import { Navigation } from '../../../components/navgation';
 import { Looping } from './Calculo_sac';
 import { theme } from '../../../../styles/theme';
-
+import FilterListIcon from '@mui/icons-material/FilterList';
+import FilterListOffIcon from '@mui/icons-material/FilterListOff';
+import Download from '../../../components/Download';
 
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.colors.AzulEscuro,
+    backgroundColor: theme.colors.AzulEscurov2,
     color: '#FFFF',
   },
   [`&.${tableCellClasses.body}`]: {
@@ -44,33 +46,35 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
   const saldoDevedor = valorInicial - valorEntrada
 
 
-  const [items, setItems] = React.useState([]);
-  const[ fullTable ,setFullTable] = React.useState(false)
-
-
+  const [items , setItems] = React.useState([]);
+  const[ fullTable , setFullTable] = React.useState(false)
+  const [ok, setOk] = React.useState(true)
+  console.log(fullTable)
+  const toggleContentVisibility = () => {
+    setFullTable(!fullTable);
+  };
 
   function handleClick() {
     Looping({ setItems }, saldoDevedor, taxaMesal, Amotização, data, extra)
-
+    setOk(false)
   }
 
 
-
-
+ 
 
   return (
     <>
-      <Box display={'flex'} justifyContent={'center'} mb={2}>
+      <Box display={'flex'} justifyContent={'space-evenly'} mb={12}>
         <Button variant="contained" sx={{ textAlign: 'center', bgcolor: theme.colors.link }} disabled={!valorInicial || !error || !parcelaMes || !taxaMesal ? true : false} onClick={handleClick}>Gerar tabela </Button>
-        <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
+        <Download items={items} ok={ok} />
       </Box>
 
       <Box sx={{ overflowX: 'auto', width: '100%' }} height={620}>
 
         <Table sx={{ minWidth: 300 }} stickyHeader aria-label="customized   table">
           <TableHead >
-            <TableRow sx={{ bgcolor: '#201E50' }}>
-              <StyledTableCell >N</StyledTableCell>
+            <TableRow >
+              <StyledTableCell onClick={()=> toggleContentVisibility()}>{ fullTable ?  <FilterListOffIcon/> : <FilterListIcon/>  }</StyledTableCell>
               <StyledTableCell>Data</StyledTableCell>
               <StyledTableCell>Parcelas</StyledTableCell>
               <Hidden mdDown>
@@ -87,7 +91,7 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
           </TableHead>
           <TableBody>
 
-            {fullTable ? items.slice(0, 5).map((num, index) => (
+            {!fullTable ? items.slice(0, 5).map((num, index) => (
               <StyledTableRow key={num.N} >
                 <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
                 <StyledTableCell align="left"> {num.data}</StyledTableCell>
@@ -105,9 +109,8 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
               </StyledTableRow>
 
             )): null}
-           
-            {fullTable ? <Button onClick={() => setFullTable(false)}> full Tabela</Button> : null}
-            {!fullTable ? items.map((num, index) => (
+                <br/>
+            {fullTable ? items.map((num, index) => (
               <StyledTableRow key={num.N}>
                 <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
                 <StyledTableCell align="left"> {num.data}</StyledTableCell>
@@ -125,7 +128,7 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
               </StyledTableRow>
 
             )) : null}
-            {fullTable ? items.slice(-5).map((num, index) => (
+            {!fullTable ? items.slice(-5).map((num, index) => (
               <StyledTableRow key={num.N}>
                 <StyledTableCell component="th" scope="row">{num.N}</StyledTableCell>
                 <StyledTableCell align="left"> {num.data}</StyledTableCell>
@@ -150,7 +153,6 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
         {/* {items ? <Typography sx={{ textAlign:'center' , marginTop:'10em', } }>Tabela sem dados</Typography>: null} */}
         
       </Box>
-      {fullTable ? null: <Button onClick={()=> setFullTable(true)}>menos Tabela</Button>}
       <div id='baixo'></div>
 
     </>
