@@ -65,7 +65,7 @@ export default function SimpleTable({ valorInicial, extra, error, data, valorEnt
         <Navigation href="#baixo"><InfoIcon color="info" /></Navigation>
       </Box>
 
-      <Box sx={{ overflowX: 'auto', width: '100%', m: 0, padding: 0 }} height={500}>
+      <Box sx={{ overflowX: 'auto', width: '100%' }} height={620}>
 
         <Table sx={{ minWidth: 300 }} stickyHeader aria-label="customized   table">
           <TableHead >

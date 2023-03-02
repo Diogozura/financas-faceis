@@ -30,7 +30,7 @@ const Table = dynamic(
 const Box = styled.section`
 width: 900px;
 margin: auto;
-margin: auto;
+margin-bottom: 2em;
 flex-wrap: wrap;
 flex-direction: row;
 justify-content:  space-around;
@@ -188,8 +188,8 @@ export default function Content() {
                     </FormControl>
 
                 </form>
-                <p>{Meses} Meses</p>
-                <p>{taxaMesal} Taxa</p>
+                    {/* <p>{Meses} Meses</p>
+                    <p>{taxaMesal} Taxa</p> */}
 
             </Box>
 
