@@ -109,7 +109,7 @@ console.log('ok', ok)
                                                 PDF
                                             </ListItemText>
                                         </MenuItem>
-                                        <MenuItem onClick={handleClose}>
+                                        <MenuItem disabled onClick={handleClose}>
                                             <ListItemIcon>
                                                 <InsertDriveFileIcon />
                                             </ListItemIcon>
