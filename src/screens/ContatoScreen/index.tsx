@@ -12,8 +12,8 @@ export default function Contato() {
 
                 }}>
                     <TextoBox>
-                        <Typography variant="h1" fontSize={'4em'} fontWeight={500}>
-                            Contato
+                        <Typography variant="h2" component="h1"  fontWeight={500}>
+                            Entre em contato
                         </Typography>
                         <Typography variant="body1">
                             <Link href={'mailto:webmaster@example.com'}>

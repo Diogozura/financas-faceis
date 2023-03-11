@@ -1,4 +1,5 @@
 import Typography from "@mui/material/Typography";
+import { Box } from "@mui/system";
 import BaseSite from "../../components/Base";
 import TextoBox from "../../components/TextoBox";
 
@@ -11,16 +12,9 @@ export default function SobreScreen() {
                         Bababa
                     </Typography>
                 </TextoBox>
-                <TextoBox>
-                    <Typography variant="h2">
-                        Bababa
-                    </Typography>
-                </TextoBox>
-                <TextoBox>
-                    <Typography variant="h2">
-                        Bababa
-                    </Typography>
-                </TextoBox>
+                <Box>
+                    
+             </Box>
             </BaseSite>
         </>
     )

@@ -11,7 +11,7 @@ export default function TextoBox({ children }) {
                 background: '#F1F1F1',
                 textAlign: 'center',
                 padding:'2em',
-                border: '1px solid #000000',
+              
                 borderRadius: '10px',
             }}>
             {children}
