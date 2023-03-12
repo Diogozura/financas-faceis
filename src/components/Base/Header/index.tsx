@@ -131,8 +131,9 @@ export default function Topo(props: Props) {
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Tabelas Facies
+              >
+                <Navigation href='/'>Tabelas Facies</Navigation>
+            
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 {navItems.map((item) => (

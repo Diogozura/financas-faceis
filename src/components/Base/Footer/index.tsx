@@ -93,22 +93,22 @@ export default function Footer() {
                         <List key={uuidv4()}>
                             <ListItem sx={{ fontWeight: 700, fontSize: '1.5em', color: '#FFFF' }}>{value.categoria}</ListItem>
                             <ListItem key={uuidv4()}>
-                                <Link href={`${value.item1.link}`} legacyBehavior>
+                                <Link href={`${value.item1.link}`} legacyBehavior passHref >
                                     <Navigation> {value.item1.nome}</Navigation>
                                 </Link>
                             </ListItem>
                             <ListItem key={uuidv4()}> 
-                                <Link href={`${value.item2.link}`} legacyBehavior>
+                                <Link href={`${value.item2.link}`} legacyBehavior passHref >
                                 <Navigation> {value.item2.nome}</Navigation>
                                 </Link>
                             </ListItem>
                             <ListItem key={uuidv4()}>
-                                <Link href={`${value.item3?.link}`} legacyBehavior >
+                                <Link href={`${value.item3?.link}`} legacyBehavior passHref >
                                 <Navigation> {value.item3?.nome}</Navigation>
                                 </Link>
                             </ListItem>
                             <ListItem key={uuidv4()}>
-                                <Link href={`${value.item4?.link}`}  legacyBehavior >
+                                <Link href={`${value.item4?.link}`}  legacyBehavior passHref >
                                 <Navigation> {value.item4?.nome}</Navigation>
                                 </Link>
                             </ListItem>

@@ -6,11 +6,15 @@ import BaseSite from "../../components/Base";
 import { Navigation } from "../../components/Links";
 import Posts from "../../components/Posts";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Head from "next/head";
 
 export default function homeScreen() {
     return (
         <>
             <BaseSite>
+                <Head>
+                    <title>Home page tabelas 2S</title>
+                </Head>
                 <Box sx={{
                     backgroundImage: 'linear-gradient(180deg, rgba(5, 252, 0, 0.5) 0%, rgba(30, 116, 217, 0.5) 100%)',
                     mt: '3em',
