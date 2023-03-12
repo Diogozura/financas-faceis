@@ -24,7 +24,7 @@ export default function SobreScreen() {
                     backgroundImage: 'linear-gradient(180deg, rgba(5, 252, 0, 0.5) 0%, rgba(30, 116, 217, 0.5) 100%)',
                     mt: '3em',
                     padding: '3em',
-                    height: '100vh'
+                    // height: '100vh'
                 }}
                 >
                     <Typography variant="h3" textAlign={'center'} mb={5} component={'h1'}>
